@@ -1,0 +1,35 @@
+language: python
+
+# Without this, we cannot test Py35
+python: 3.5
+
+# Use container based infrastructure
+sudo: false
+
+env:
+  matrix:
+    - TOXENV=flake8
+
+    - TOXENV=py35-dj19
+    - TOXENV=py34-dj19
+    - TOXENV=py27-dj19
+    - TOXENV=py35-dj18
+    - TOXENV=py34-dj18
+    - TOXENV=py33-dj18
+    - TOXENV=py27-dj18
+
+cache:
+  directories:
+    - $HOME/.wheelhouse
+
+install:
+  - pip install tox
+  - pip install coveralls
+
+script:
+  - tox -e $TOXENV
+
+after_success: coveralls
+
+notifications:
+  webhooks: http://addons.us-iad-rs.aldryn.io/en/travis-endpoint/

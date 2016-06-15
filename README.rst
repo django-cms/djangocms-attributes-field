@@ -2,8 +2,12 @@
 Django CMS Attributes Field
 ===========================
 
+.. image:: https://travis-ci.org/divio/djangocms-attributes-field.svg?branch=master
+    :target: https://travis-ci.org/divio/djangocms-attributes-field
+
 An opinionated implementation of JSONField for arbitrary HTML
 element attributes.
+
 
 --------
 Overview
@@ -16,12 +20,24 @@ There are a wide variety of types of attributes and using the "normal" Django
 method of adding ModelFields for each on a business model is cumbersome at
 best and moreover may require related tables to allow cases where any number
 of the same type of attribute should be supported (i.e., data-attributes).
+This can contribute to performance problems.
 
 To avoid these pitfalls, this package allows all of these attributes to be
 stored together in a single text field in the database as a JSON blob, but
 provides a nice widget to provide an intuitive, key/value pair interface
 and provide sensible validation of the keys used.
 
+Example
+-------
+
+The following is an example render of this field's widget render in the Django admin:
+(Note this example is from a django CMS project which uses djangocms-admin-style)
+
+.. image:: imgs/example.png
+    :width: 406px
+    :align: left
+    :height: 388px
+    :alt: Example render of this model field's widget in the Django Admin
 
 ------------
 Installation
