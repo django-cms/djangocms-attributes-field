@@ -1,0 +1,14 @@
+*.log
+*.pot
+*.pyc
+.project
+.pydevproject
+.settings
+*.egg-info
+dist
+build
+env*
+.tox
+.coverage
+.eggs
+.idea
