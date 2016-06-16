@@ -84,6 +84,39 @@ There is an optional parameter that can be used when declaring the field: ::
                         valid keys
 
 
+class method: to_str
+++++++++++++++++++++
+
+``AttributeField`` provides a handy class method ``to_str()`` that will emit
+the stored key/value pairs as a string suitable for inclusion in your template
+for the target HTML element in question. You can use it like this: ::
+
+    # models.py
+    ...
+    MyCoolModel(models.Model):
+        ...
+        attributes = AttributesField()
+
+        @property
+        def attributes_str(self):
+            return AttributeField.to_str(self, 'attributes')
+
+
+    # templates/my_cool_project/template.html
+
+    ...
+    <a href="..." {{ object.attributes_str }}>click me</a>
+    ...
+
+(Assuming that ``object`` is a context variable containing a
+``MyCoolModel`` instance.)
+
+In addition to nicely encapsulating the boring task of converting key/value
+pairs into a string with proper escaping and marking-safe, this method also
+ensures that *existing* key/value pairs with keys that have since been added
+to the field's ``excluded_keys`` are not included in the output string.
+
+
 AttributeWidget
 ---------------
 
