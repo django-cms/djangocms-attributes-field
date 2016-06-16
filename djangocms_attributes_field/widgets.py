@@ -17,26 +17,21 @@ class AttributesWidget(Widget):
     # https://www.huyng.com/posts/django-custom-form-widget-for-dictionary-and-tuple-key-value-pairs
     def __init__(self, *args, **kwargs):
         """
-        :param key_attrs: HTML attributes to be applied to the key input
-        :param val_attrs: HTML attributes to be applied to the value input
+        Supports additional kwargs: `key_attr` and `val_attr`.
         """
-        self.key_attrs = {}
-        self.val_attrs = {}
-        if "key_attrs" in kwargs:
-            self.key_attrs = kwargs.pop("key_attrs")
-        if "val_attrs" in kwargs:
-            self.val_attrs = kwargs.pop("val_attrs")
-        Widget.__init__(self, *args, **kwargs)
+        self.key_attrs = kwargs.pop('key_attrs', {})
+        self.val_attrs = kwargs.pop('val_attrs', {})
+        super(AttributesWidget, self).__init__(*args, **kwargs)
 
     def _render_row(self, key, value, field_name, key_attrs, val_attrs):
         """
         Renders to HTML a single key/value pair row.
 
-        :param key: String key
-        :param value: String value
-        :param field_name: String name of this field
-        :param key_attrs: HTML attributes to be applied to the key input
-        :param val_attrs: HTML attributes to be applied to the value input
+        :param key: (str) key
+        :param value: (str) value
+        :param field_name: (str) String name of this field
+        :param key_attrs: (dict) HTML attributes to be applied to the key input
+        :param val_attrs: (dict) HTML attributes to be applied to the value input
         """
         return """
         <div class="form-row attribute-pair">
@@ -65,11 +60,11 @@ class AttributesWidget(Widget):
 
     def render(self, name, value, attrs=None):
         """
-        Renders this field into an HTML string
+        Renders this field into an HTML string.
 
-        :param name: (str)  -- name of the field
-        :param value: (str)  -- a json string of a two-tuple list automatically passed in by django
-        :param attrs: (dict) -- automatically passed in by django (unused by this function)
+        :param name: (str) name of the field
+        :param value: (str) a json string of a two-tuple list automatically passed in by django
+        :param attrs: (dict) automatically passed in by django (unused by this function)
         """
         if not value:
             value = '{}'
@@ -78,11 +73,9 @@ class AttributesWidget(Widget):
             attrs = {}
 
         output = '<div class="aldryn-attributes-field">'
-        idx = 0
         if value and isinstance(value, dict) and len(value) > 0:
             for key in sorted(value):
                 output += self._render_row(key, value[key], name, flatatt(self.key_attrs), flatatt(self.val_attrs))
-                idx += 1
 
         # Add empty template
         output += """

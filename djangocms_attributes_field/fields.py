@@ -6,16 +6,26 @@ import json
 import jsonfield
 import re
 
+from jsonfield.forms import JSONFormField
+
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
-from .forms import AttributesFormField
 from .widgets import AttributesWidget
 
 
 regex_key_validator = RegexValidator(regex=r'^[a-z][-a-z0-9_]*\Z',
                                      flags=re.IGNORECASE, code='invalid')
+
+
+class AttributesFormField(JSONFormField):
+    """
+    Sub-classed to set the default widget to AttributesWidget.
+    """
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('widget', AttributesWidget)
+        super(AttributesFormField, self).__init__(*args, **kwargs)
 
 
 class AttributesField(jsonfield.JSONField):
@@ -33,7 +43,6 @@ class AttributesField(jsonfield.JSONField):
           in a case-insensitive manner;
         * The default widget is AttributesWidget from this package.
     """
-
     def __init__(self, *args, **kwargs):
         excluded_keys = kwargs.pop('excluded_keys', [])
         # Note we accept uppercase letters in the param, but the comparison
@@ -52,6 +61,8 @@ class AttributesField(jsonfield.JSONField):
         A key must start with a letter, but can otherwise contain letters,
         numbers, dashes or underscores. It must not also be part of
         `excluded_keys` as configured in the field.
+
+        :param key: (str) The key to validate
         """
         # Verify the key is not one of `excluded_keys`.
         if key.lower() in self.excluded_keys:
@@ -72,10 +83,13 @@ class AttributesField(jsonfield.JSONField):
     def validate_value(self, key, value):
         """
         A value can be anything that can be JSON-ified.
+
+        :param key: (str) The key of the value
+        :param value: (str) The value to validate
         """
         try:
             json.dumps(value)
-        except:
+        except (TypeError, ValueError):
             raise ValidationError(
                 _('The value for the key "{key}" is invalid. Please enter a '
                   'value that can be represented in JSON.').format(key=key))
