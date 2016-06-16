@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.forms import Widget
 from django.forms.widgets import flatatt
 from django.utils.html import escape
@@ -42,9 +43,11 @@ class AttributesWidget(Widget):
             </div>
             <div class="field-box">
                <label>Value</label>
-               <input type="text" class="attributes-value" name="attributes_value[{field_name}]" value="{value}" {val_attrs}>
+               <input type="text" class="attributes-value"
+                      name="attributes_value[{field_name}]"
+                      value="{value}" {val_attrs}>
                 <a class="delete-attributes-pair" href="#" title="{remove}">
-                    <img src="/static/admin/img/icon-deletelink.svg" alt="{remove}">
+                    <img src="{deleteIconSrc}" alt="{remove}">
                 </a>
             </div>
         </div>
@@ -55,6 +58,7 @@ class AttributesWidget(Widget):
             key_attrs=key_attrs,
             val_attrs=val_attrs,
             remove=_('Remove'),
+            deleteIconSrc=static('admin/img/icon-deletelink.svg'),
         )
 
     def render(self, name, value, attrs=None):
@@ -85,10 +89,13 @@ class AttributesWidget(Widget):
         output += """
         <div class="related-widget-wrapper">
             <a class="add-attributes-pair" href="#" title="{title}">
-                <img src="/static/admin/img/icon-addlink.svg" alt="{title}">
+                <img src="{addIconSrc}" alt="{title}">
             </a>
         </div>
-        """.format(title=_('Add another key/value pair'))
+        """.format(
+            title=_('Add another key/value pair'),
+            addIconSrc=static('admin/img/icon-addlink.svg'),
+        )
         output += '</div>'
 
         # NOTE: This is very consciously being inlined into the HTML because
