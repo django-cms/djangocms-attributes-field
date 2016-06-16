@@ -68,7 +68,7 @@ class AttributesField(jsonfield.JSONField):
                 _('"{field_name}" is not a field of {obj|r}').format(
                     obj=obj, field_name=field_name))
 
-        opts = type(obj)._meta
+        opts = obj._meta
         field = opts.get_field(field_name)
 
         if not isinstance(field, cls):
