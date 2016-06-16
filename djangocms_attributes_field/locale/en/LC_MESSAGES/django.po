@@ -1,0 +1,38 @@
+# djangocms-attributes-field
+# Copyright (C) 2016
+# This file is distributed under the same license as the
+# djangocms-attributes-field package.
+# DIVIO <info@divio.com>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 16:26-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: fields.py:59
+#, python-brace-format
+msgid "\"{key}\" is excluded by configuration and cannot be used as a key."
+msgstr ""
+
+#: fields.py:68
+#, python-brace-format
+msgid ""
+"\"{key}\" is not a valid key. Keys must start with at least one letter and "
+"consist only of the letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: fields.py:80
+#, python-brace-format
+msgid ""
+"The value for the key \"{key}\" is invalid. Please enter a value that can be "
+"represented in JSON."
+msgstr ""
