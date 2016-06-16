@@ -9,7 +9,8 @@ import re
 from jsonfield.forms import JSONFormField
 
 from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured, ValidationError
+from django.utils.html import mark_safe, conditional_escape
 from django.utils.translation import ugettext as _
 
 from .widgets import AttributesWidget
@@ -49,6 +50,40 @@ class AttributesField(jsonfield.JSONField):
         # is not case sensitive. So, we coerce the input to lowercase here.
         self.excluded_keys = [key.lower() for key in excluded_keys]
         super(AttributesField, self).__init__(*args, **kwargs)
+
+    @classmethod
+    def to_str(cls, obj, field_name):
+        """
+        Emits stored attributes as a String suitable for for adding to an
+        HTML element and performs an outbound filter of excluded_keys.
+        """
+        # We are explicitly ignoring keys in `excluded_keys` here. The field
+        # itself prevents *new* keys from being created that are configured in the
+        # field parameter `excluded_keys`. This utility uses the same
+        # configuration to prevent any keys in `excluded_keys` from *existing*
+        # objects from being emitted.
+
+        if not hasattr(obj, field_name):
+            raise ImproperlyConfigured(
+                _('"{field_name}" is not a field of {obj|r}').format(
+                    obj=obj, field_name=field_name))
+
+        opts = obj._meta
+        field = opts.get_field(field_name)
+
+        if not isinstance(field, cls):
+            raise TypeError(
+                _('"{field_name}" is not an AttributesField').format(
+                    field_name=field_name))
+
+        value = getattr(obj, field_name)
+        excluded_keys = field.excluded_keys
+
+        attrs = []
+        for key, val in value.items():
+            if key.lower() not in excluded_keys:
+                attrs.append('{key}="{value}"'.format(key=key, value=conditional_escape(val)))
+        return mark_safe(" ".join(attrs))
 
     def validate(self, value, model_instance):
         super(AttributesField, self).validate(value, model_instance)
