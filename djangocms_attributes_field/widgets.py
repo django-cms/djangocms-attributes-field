@@ -6,6 +6,7 @@ from django.forms import Widget
 from django.forms.widgets import flatatt
 from django.utils.html import escape
 from django.utils.text import mark_safe
+from django.utils.translation import ugettext as _
 
 
 class AttributesWidget(Widget):
@@ -34,19 +35,16 @@ class AttributesWidget(Widget):
         :param val_attrs: (dict) HTML attributes to be applied to the value input
         """
         return """
-        <div class="form-row attribute-pair">
+        <div class="form-row attributes-pair">
             <div class="field-box">
                <label>Key</label>
-               <input type="text" name="attributes_key[{field_name}]" value="{key}" {key_attrs}>
+               <input type="text" class="attributes-key" name="attributes_key[{field_name}]" value="{key}" {key_attrs}>
             </div>
             <div class="field-box">
                <label>Value</label>
-               <input type="text" name="attributes_value[{field_name}]" value="{value}" {val_attrs}>
-            </div>
-            <div class="field-box">
-               <label></label>
-                <a class="delete-attributes-pair" href="#" title="Remove">
-                    <img src="/static/admin/img/icon-deletelink.svg" alt="Delete">
+               <input type="text" class="attributes-value" name="attributes_value[{field_name}]" value="{value}" {val_attrs}>
+                <a class="delete-attributes-pair" href="#" title="{remove}">
+                    <img src="/static/admin/img/icon-deletelink.svg" alt="{remove}">
                 </a>
             </div>
         </div>
@@ -55,7 +53,8 @@ class AttributesWidget(Widget):
             value=escape(value),
             field_name=field_name,
             key_attrs=key_attrs,
-            val_attrs=val_attrs
+            val_attrs=val_attrs,
+            remove=_('Remove'),
         )
 
     def render(self, name, value, attrs=None):
@@ -72,7 +71,7 @@ class AttributesWidget(Widget):
         if attrs is None:
             attrs = {}
 
-        output = '<div class="aldryn-attributes-field">'
+        output = '<div class="djangocms-attributes-field">'
         if value and isinstance(value, dict) and len(value) > 0:
             for key in sorted(value):
                 output += self._render_row(key, value[key], name, flatatt(self.key_attrs), flatatt(self.val_attrs))
@@ -85,18 +84,18 @@ class AttributesWidget(Widget):
         # Add "+" button
         output += """
         <div class="related-widget-wrapper">
-            <a class="add-attributes-pair" href="#" title="Add another {name}">
-                <img src="/static/admin/img/icon-addlink.svg" alt="Add">
+            <a class="add-attributes-pair" href="#" title="{title}">
+                <img src="/static/admin/img/icon-addlink.svg" alt="{title}">
             </a>
         </div>
-        """.format(name=name)
+        """.format(title=_('Add another key/value pair'))
         output += '</div>'
 
         # NOTE: This is very consciously being inlined into the HTML because
         # if we use the Django "class Media()" mechanism to include this JS
-        # behaviour, then every project that uses any package that uses Aldryn
-        # Attributes Field will also have to add this package to
-        # its INSTALLED_APPS. By inlining the JS and CSS here, we avoid this.
+        # behaviour, then every project that uses any package that uses Django
+        # CMS Attributes Field will also have to add this package to its
+        # INSTALLED_APPS. By inlining the JS and CSS here, we avoid this.
         output += """
         <style>
             .delete-attributes-pair,
@@ -106,25 +105,41 @@ class AttributesWidget(Widget):
                 display: inline-block;
                 padding: 6px 10px 8px;
             }
+            .delete-attributes-pair {
+                margin-left: 16px;
+            }
         </style>
         <script>
-            (function($){
-                $(document).ready(function(){
-                    $(".aldryn-attributes-field").each(function(){
+            (function ($) {
+                function fixUpIds (fieldGroup) {
+                    fieldGroup.find('.attributes-pair').each(function (idx, value) {
+                        $(value).find('.attributes-key').attr('id', 'field-key-row-' + idx)
+                                .siblings('label').attr('for', 'field-key-row-' + idx);
+                        $(value).find('.attributes-value').attr('id', 'field-value-row-' + idx)
+                                .siblings('label').attr('for', 'field-value-row-' + idx);
+                    });
+                }
+
+                $(document).ready(function () {
+                    $('.djangocms-attributes-field').each(function () {
                         var that = $(this);
                         var emptyRow = that.find('.template');
                         var btnAdd = that.find('.add-attributes-pair');
                         var btnDelete = that.find('.delete-attributes-pair');
 
-                        btnAdd.on('click', function(evt){
-                            evt.preventDefault();
-                            emptyRow.before(emptyRow.find('.attribute-pair').clone());
+                        btnAdd.on('click', function (event) {
+                            event.preventDefault();
+                            emptyRow.before(emptyRow.find('.attributes-pair').clone());
+                            fixUpIds(that);
                         });
 
-                        btnDelete.on('click', function(evt){
-                            evt.preventDefault();
-                            $(this).parents('.attribute-pair').remove();
+                        btnDelete.on('click', function (event) {
+                            event.preventDefault();
+                            $(this).parents('.attributes-pair').remove();
+                            fixUpIds(that);
                         });
+
+                        fixUpIds(that);
                     });
                 });
             }(django.jQuery));
