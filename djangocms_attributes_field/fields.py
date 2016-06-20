@@ -10,6 +10,7 @@ from jsonfield.forms import JSONFormField
 
 from django.core.validators import RegexValidator
 from django.core.exceptions import ImproperlyConfigured, ValidationError
+from django.utils.functional import curry
 from django.utils.html import mark_safe, conditional_escape
 from django.utils.translation import ugettext as _
 
@@ -84,6 +85,18 @@ class AttributesField(jsonfield.JSONField):
             if key.lower() not in excluded_keys:
                 attrs.append('{key}="{value}"'.format(key=key, value=conditional_escape(val)))
         return mark_safe(" ".join(attrs))
+
+    def contribute_to_class(self, cls, name, **kwargs):
+        """
+        Adds a @property: «name»_str that returns a string representation of
+        the attributes ready for inclusion on an HTML element.
+        """
+        super(AttributesField, self).contribute_to_class(cls, name, **kwargs)
+        # Make sure we're not going to clobber something that already exists.
+        property_name = '{name}_str'.format(name=name)
+        if not hasattr(cls, property_name):
+            str_property = curry(self.to_str, field_name=name)
+            setattr(cls, property_name, property(str_property))
 
     def validate(self, value, model_instance):
         super(AttributesField, self).validate(value, model_instance)
