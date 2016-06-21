@@ -1,0 +1,11 @@
+
+0.0.2 (2016-06-20)
+------------------
+
+* Added support to automatically add property/-ies to implementing classes
+
+
+0.0.1 (2016-06-16)
+------------------
+
+* Initial release
