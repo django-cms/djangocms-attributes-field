@@ -87,7 +87,10 @@ class AttributesField(jsonfield.JSONField):
         attrs = []
         for key, val in value_items:
             if key.lower() not in excluded_keys:
-                attrs.append('{key}="{value}"'.format(key=key, value=conditional_escape(val)))
+                if val:
+                    attrs.append('{key}="{value}"'.format(key=key, value=conditional_escape(val)))
+                else:
+                    attrs.append('{key}'.format(key=key))
         return mark_safe(" ".join(attrs))
 
     def contribute_to_class(self, cls, name, **kwargs):
