@@ -77,11 +77,15 @@ class AttributesField(jsonfield.JSONField):
                 _('"{field_name}" is not an AttributesField').format(
                     field_name=field_name))
 
-        value = getattr(obj, field_name)
         excluded_keys = field.excluded_keys
+        value = getattr(obj, field_name)
+        try:
+            value_items = value.items()
+        except AttributeError:
+            value_items = [value]
 
         attrs = []
-        for key, val in value.items():
+        for key, val in value_items:
             if key.lower() not in excluded_keys:
                 attrs.append('{key}="{value}"'.format(key=key, value=conditional_escape(val)))
         return mark_safe(" ".join(attrs))
