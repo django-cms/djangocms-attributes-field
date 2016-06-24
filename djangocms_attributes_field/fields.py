@@ -13,6 +13,7 @@ from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.utils.functional import curry
 from django.utils.html import mark_safe, conditional_escape
 from django.utils.translation import ugettext as _
+from django.utils.six import string_types
 
 from .widgets import AttributesWidget
 
@@ -51,6 +52,19 @@ class AttributesField(jsonfield.JSONField):
         # is not case sensitive. So, we coerce the input to lowercase here.
         self.excluded_keys = [key.lower() for key in excluded_keys]
         super(AttributesField, self).__init__(*args, **kwargs)
+
+    def from_db_value(self, value, expression, connection, context):
+        """
+        This is a temporary workaround for #7 taken from
+        https://bitbucket.org/schinckel/django-jsonfield/pull-requests/32/make-from_db_value-compatible-with/diff
+        See there for full discussion
+        """
+        if value is None:
+            return None
+        elif isinstance(value, string_types):
+            return json.loads(value, **self.decoder_kwargs)
+        else:
+            return value
 
     @classmethod
     def to_str(cls, obj, field_name):
