@@ -2,7 +2,6 @@
 
 from __future__ import unicode_literals
 
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.forms import Widget
 from django.forms.widgets import flatatt
 from django.utils.html import escape
