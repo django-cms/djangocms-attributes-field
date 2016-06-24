@@ -46,9 +46,7 @@ class AttributesWidget(Widget):
                <input type="text" class="attributes-value"
                       name="attributes_value[{field_name}]"
                       value="{value}" {val_attrs}>
-                <a class="delete-attributes-pair" href="#" title="{remove}">
-                    <img src="{deleteIconSrc}" alt="{remove}">
-                </a>
+                <a class="delete-attributes-pair deletelink" href="#" title="{remove}"></a>
             </div>
         </div>
         """.format(
@@ -58,7 +56,6 @@ class AttributesWidget(Widget):
             key_attrs=key_attrs,
             val_attrs=val_attrs,
             remove=_('Remove'),
-            deleteIconSrc=static('admin/img/icon-deletelink.svg'),
         )
 
     def render(self, name, value, attrs=None):
@@ -88,13 +85,11 @@ class AttributesWidget(Widget):
         # Add "+" button
         output += """
         <div class="related-widget-wrapper">
-            <a class="add-attributes-pair" href="#" title="{title}">
-                <img src="{addIconSrc}" alt="{title}">
-            </a>
+            <a class="add-attributes-pair addlink" href="#" title="{title}"></a>
         </div>
         """.format(
+            label=_('Add'),
             title=_('Add another key/value pair'),
-            addIconSrc=static('admin/img/icon-addlink.svg'),
         )
         output += '</div>'
 
@@ -110,7 +105,7 @@ class AttributesWidget(Widget):
                 border: 1px solid #ddd;
                 border-radius: 3px;
                 display: inline-block;
-                padding: 6px 10px 8px;
+                padding: 6px 5px 8px 10px;
             }
             .delete-attributes-pair {
                 margin-left: 16px;
