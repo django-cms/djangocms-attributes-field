@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 import json
+from django.contrib.postgres.fields import JSONField
 import jsonfield
 import re
 
@@ -31,7 +32,7 @@ class AttributesFormField(JSONFormField):
         super(AttributesFormField, self).__init__(*args, **kwargs)
 
 
-class AttributesField(jsonfield.JSONField):
+class AttributesField(JSONField):
     """
     This is an opinionated sub-class of JSONField. Here's a summary of the
     primary differences:
