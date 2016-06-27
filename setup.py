@@ -26,7 +26,6 @@ CLASSIFIERS = [
 
 REQUIREMENTS = [
     'django>=1.8,<1.10',
-    'django-jsonfield>=1.0,<1.1',
 ]
 
 setup(
