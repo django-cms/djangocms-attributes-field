@@ -11,7 +11,7 @@ from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.db import models
 from django.utils.functional import curry
 from django.utils.html import mark_safe, conditional_escape
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ugettext_lazy
 from django.utils import six
 
 from .widgets import AttributesWidget
@@ -61,7 +61,7 @@ class AttributesField(models.Field):
         * The default widget is AttributesWidget from this package.
     """
     default_error_messages = {
-        'invalid': _("'%s' is not a valid JSON string.")
+        'invalid': ugettext_lazy("'%s' is not a valid JSON string.")
     }
     description = "JSON object"
 
