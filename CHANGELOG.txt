@@ -1,3 +1,10 @@
+0.0.6 (2016-06-27)
+------------------
+
+* Fixed errors when both ``django-jsonfield`` and ``jsonfield``
+  are on the python path.
+
+
 0.0.5 (2016-06-27)
 ------------------
 
