@@ -62,7 +62,7 @@ class AttributesField(jsonfield.JSONField):
         if value is None:
             return None
         elif isinstance(value, string_types):
-            return json.loads(value, **self.decoder_kwargs)
+            return json.loads(value, **self.load_kwargs)
         else:
             return value
 
