@@ -1,3 +1,9 @@
+0.1.0 (2016-06-29)
+------------------
+
+* Stop forcing Django to use `jsonb` fields on PostgreSQL backends
+
+
 0.0.6 (2016-06-27)
 ------------------
 
