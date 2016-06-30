@@ -132,18 +132,6 @@ class AttributesField(models.Field):
     def get_internal_type(self):
         return 'TextField'
 
-    def db_type(self, connection):
-        if connection.vendor == 'postgresql':
-            # Only do jsonb if in pg 9.4+
-            if connection.pg_version >= 90400:
-                return 'jsonb'
-            return 'text'
-        if connection.vendor == 'mysql':
-            return 'longtext'
-        if connection.vendor == 'oracle':
-            return 'long'
-        return 'text'
-
     def contribute_to_class(self, cls, name, **kwargs):
         """
         Adds a @property: «name»_str that returns a string representation of
