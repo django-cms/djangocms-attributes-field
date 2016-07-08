@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.forms import Widget
 from django.forms.widgets import flatatt
-from django.utils.html import escape
+from django.utils.html import escape, strip_spaces_between_tags
 from django.utils.text import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -34,7 +34,7 @@ class AttributesWidget(Widget):
         :param key_attrs: (dict) HTML attributes to be applied to the key input
         :param val_attrs: (dict) HTML attributes to be applied to the value input
         """
-        return """
+        template = """
         <div class="form-row attributes-pair">
             <div class="field-box">
                <label>Key</label>
@@ -56,6 +56,8 @@ class AttributesWidget(Widget):
             val_attrs=val_attrs,
             remove=_('Remove'),
         )
+
+        return strip_spaces_between_tags(template.strip())
 
     def render(self, name, value, attrs=None):
         """
@@ -106,6 +108,29 @@ class AttributesWidget(Widget):
                 display: inline-block;
                 padding: 6px 5px 8px 10px;
             }
+            .attributes-pair {
+                display: table;
+                table-layout: fixed;
+                width: 100%;
+            }
+            .attributes-pair .field-box:first-child {
+                width: 25% !important;
+                display: table-cell !important;
+                vertical-align: top !important;
+                float: none !important;
+            }
+            .attributes-pair .field-box:last-child {
+                display: table-cell !important;
+                vertical-align: top !important;
+                width: 100% !important;
+                float: none !important;
+            }
+            .djangocms-attributes-field .attributes-pair .attributes-value {
+                width: 60% !important;
+                width: -webkit-calc(100% - 54px) !important;
+                width: -moz-calc(100% - 54px) !important;
+                width: calc(100% - 54px) !important;
+            }
             .delete-attributes-pair {
                 margin-left: 16px;
             }
@@ -121,7 +146,7 @@ class AttributesWidget(Widget):
                     });
                 }
 
-                $(document).ready(function () {
+                $(function () {
                     $('.djangocms-attributes-field').each(function () {
                         var that = $(this);
                         var emptyRow = that.find('.template');
@@ -134,14 +159,18 @@ class AttributesWidget(Widget):
                             fixUpIds(that);
                         });
 
-                        btnDelete.on('click', function (event) {
+                        that.on('click', '.delete-attributes-pair', function (event) {
                             event.preventDefault();
-                            $(this).parents('.attributes-pair').remove();
+
+                            var removeButton = $(this);
+
+                            removeButton.closest('.attributes-pair').remove();
                             fixUpIds(that);
                         });
 
                         fixUpIds(that);
                     });
+
                 });
             }(django.jQuery));
         </script>
