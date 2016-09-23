@@ -149,6 +149,13 @@ class AttributesWidget(Widget):
                 $(function () {
                     $('.djangocms-attributes-field').each(function () {
                         var that = $(this);
+
+                        if (that.data('isAttributesFieldInitialized')) {
+                            return;
+                        }
+
+                        that.data('isAttributesFieldInitialized', true);
+
                         var emptyRow = that.find('.template');
                         var btnAdd = that.find('.add-attributes-pair');
                         var btnDelete = that.find('.delete-attributes-pair');

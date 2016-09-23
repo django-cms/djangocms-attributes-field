@@ -1,3 +1,9 @@
+0.1.2 (unreleased)
+------------------
+
+* Fixed a bug with multiple widgets on the same page
+
+
 0.1.1 (2016-07-12)
 ------------------
 
