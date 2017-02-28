@@ -106,19 +106,6 @@ class AttributesField(models.Field):
             return None
         return json.dumps(value)
 
-    def get_prep_lookup(self, lookup_type, value):
-        if lookup_type in ["exact", "iexact", "in", "isnull"]:
-            return value
-        if lookup_type in ["contains", "icontains"]:
-            if isinstance(value, (list, tuple)):
-                raise TypeError("Lookup type %r not supported with argument of %s" % (
-                    lookup_type, type(value).__name__
-                ))
-            if isinstance(value, dict):
-                return self.get_prep_value(value)[1:-1]
-            return self.get_prep_value(value)
-        raise TypeError('Lookup type %r not supported' % lookup_type)
-
     def get_default(self):
         if self.has_default():
             default = self.default
