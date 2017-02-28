@@ -11,5 +11,6 @@ def run():
     from djangocms_helper import runner
     runner.run('djangocms_attributes_field')
 
+
 if __name__ == "__main__":
     run()
