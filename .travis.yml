@@ -10,6 +10,9 @@ env:
   matrix:
     - TOXENV=flake8
 
+    - TOXENV=py35-dj10
+    - TOXENV=py34-dj10
+    - TOXENV=py27-dj10
     - TOXENV=py35-dj19
     - TOXENV=py34-dj19
     - TOXENV=py27-dj19
