@@ -25,7 +25,7 @@ CLASSIFIERS = [
 ]
 
 REQUIREMENTS = [
-    'django>=1.8,<1.11',
+    'django>=1.8,<1.12',
 ]
 
 setup(
