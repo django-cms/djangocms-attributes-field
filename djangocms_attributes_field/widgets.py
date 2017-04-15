@@ -37,11 +37,9 @@ class AttributesWidget(Widget):
         template = """
         <div class="form-row attributes-pair">
             <div class="field-box">
-               <label>Key</label>
                <input type="text" class="attributes-key" name="attributes_key[{field_name}]" value="{key}" {key_attrs}>
             </div>
             <div class="field-box">
-               <label>Value</label>
                <input type="text" class="attributes-value"
                       name="attributes_value[{field_name}]"
                       value="{value}" {val_attrs}>
