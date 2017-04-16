@@ -3,7 +3,10 @@
 from __future__ import unicode_literals
 
 from django.forms import Widget
-from django.forms.widgets import flatatt
+try:
+    from django.forms.utils import flatatt
+except ImportError:
+    from django.forms.widgets import flatatt
 from django.utils.html import escape, strip_spaces_between_tags
 from django.utils.text import mark_safe
 from django.utils.translation import ugettext as _
