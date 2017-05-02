@@ -198,3 +198,6 @@ class AttributesWidget(Widget):
             values = data.getlist(val_field)
             return dict([item for item in zip(keys, values) if not item[0] == ''])
         return {}
+
+    def value_omitted_from_data(self, data, files, name):
+        return False
