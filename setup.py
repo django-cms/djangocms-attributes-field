@@ -11,6 +11,10 @@ CLASSIFIERS = [
     'Framework :: Django',
     'Framework :: Django :: 1.8',
     'Framework :: Django :: 1.9',
+    'Framework :: Django :: 1.10',
+    'Framework :: Django :: 1.11',
+    'Framework :: Django :: 2.0',
+    'Framework :: Django :: 2.1',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: BSD License',
     'Operating System :: OS Independent',
@@ -19,13 +23,13 @@ CLASSIFIERS = [
     'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     'Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Message Boards',
     'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
 ]
 
 REQUIREMENTS = [
-    'django>=1.8,<1.12',
+    'django>=1.8,<2.2',
 ]
 
 setup(
