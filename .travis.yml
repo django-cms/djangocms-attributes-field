@@ -1,9 +1,7 @@
 language: python
 
 # Without this, we cannot test Py35
-python:
-  - 3.5
-  - 3.6
+python: 3.6
 
 # Use container based infrastructure
 sudo: false
