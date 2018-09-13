@@ -57,13 +57,14 @@ class AttributesWidget(Widget):
 
         return strip_spaces_between_tags(template.strip())
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         """
         Renders this field into an HTML string.
 
         :param name: (str) name of the field
         :param value: (str) a json string of a two-tuple list automatically passed in by django
         :param attrs: (dict) automatically passed in by django (unused by this function)
+        :param renderer: (object) automatically passed in by django (unused by this function)
         """
         if not value:
             value = '{}'
