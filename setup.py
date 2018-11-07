@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from setuptools import setup
+
 from djangocms_attributes_field import __version__
 
 
@@ -9,19 +10,16 @@ CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Web Environment',
     'Framework :: Django',
-    'Framework :: Django :: 1.8',
-    'Framework :: Django :: 1.9',
-    'Framework :: Django :: 1.10',
     'Framework :: Django :: 1.11',
     'Framework :: Django :: 2.0',
     'Framework :: Django :: 2.1',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: BSD License',
     'Operating System :: OS Independent',
-    'Programming Language :: Python',
     'Topic :: Communications',
     'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     'Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Message Boards',
+    'Programming Language :: Python',
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
@@ -29,7 +27,7 @@ CLASSIFIERS = [
 ]
 
 REQUIREMENTS = [
-    'django>=1.8,<2.2',
+    'django>=1.11,<2.2',
 ]
 
 setup(
