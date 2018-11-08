@@ -12,3 +12,4 @@ env*
 .coverage
 .eggs
 .idea
+local.sqlite
