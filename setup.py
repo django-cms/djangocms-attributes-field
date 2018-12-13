@@ -5,7 +5,9 @@ from setuptools import find_packages, setup
 from djangocms_attributes_field import __version__
 
 
-REQUIREMENTS = []
+REQUIREMENTS = [
+    'django-cms>=3.4.5',
+]
 
 
 CLASSIFIERS = [

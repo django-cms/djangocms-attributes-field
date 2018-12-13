@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.core.exceptions import ValidationError
 from django.test.testcases import TestCase
 
-from ..fields import AttributesField
+from djangocms_attributes_field.fields import AttributesField
 
 
 class KeyValidationTests(TestCase):

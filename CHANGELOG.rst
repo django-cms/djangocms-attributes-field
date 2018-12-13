@@ -7,6 +7,7 @@ Changelog
 
 * Fixed compatibility with Django 2.x
 * Added proper test framework
+* Cleaned up file structure
 
 
 0.4.0 (2018-11-08)
