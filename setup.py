@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from setuptools import setup
+from setuptools import find_packages, setup
 
 from djangocms_attributes_field import __version__
 
 
-# https://pypi.python.org/pypi?%3Aaction=list_classifiers
+REQUIREMENTS = [
+    'django-cms>=3.4.5',
+]
+
+
 CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Web Environment',
@@ -26,23 +30,20 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
 ]
 
-REQUIREMENTS = [
-    'django>=1.11,<2.2',
-]
 
 setup(
     name='djangocms-attributes-field',
     version=__version__,
-    description='',
+    description='Adds attributes to Django models.',
     author='Divio AG',
     author_email='info@divio.ch',
     url='https://github.com/divio/djangocms-attributes-field/',
-    packages=['djangocms_attributes_field', ],
-    install_requires=REQUIREMENTS,
-    license='LICENSE.txt',
-    platforms=['OS Independent'],
-    classifiers=CLASSIFIERS,
+    license='BSD',
     long_description=open('README.rst').read(),
+    packages=find_packages(exclude=['tests']),
     include_package_data=True,
     zip_safe=False,
+    install_requires=REQUIREMENTS,
+    classifiers=CLASSIFIERS,
+    test_suite='tests.settings.run',
 )

@@ -1,0 +1,22 @@
+HELPER_SETTINGS = {
+    'INSTALLED_APPS': [
+        'djangocms_attributes_field',
+    ],
+    'CMS_LANGUAGES': {
+        1: [{
+            'code': 'en',
+            'name': 'English',
+        }]
+    },
+    'LANGUAGE_CODE': 'en',
+    'ALLOWED_HOSTS': ['localhost'],
+}
+
+
+def run():
+    from djangocms_helper import runner
+    runner.cms('djangocms_attributes_field')
+
+
+if __name__ == '__main__':
+    run()

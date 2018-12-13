@@ -1,17 +1,12 @@
 ===========================
-Django CMS Attributes Field
+django CMS Attributes Field
 ===========================
 
-.. image:: https://travis-ci.org/divio/djangocms-attributes-field.svg?branch=master
-    :target: https://travis-ci.org/divio/djangocms-attributes-field
+
+|pypi| |build| |coverage|
 
 An opinionated implementation of JSONField for arbitrary HTML
 element attributes.
-
-
---------
-Overview
---------
 
 This project aims to provide a sensible means of storing and managing
 arbitrary HTML element attributes for later emitting them into templates.
@@ -27,43 +22,37 @@ stored together in a single text field in the database as a JSON blob, but
 provides a nice widget to provide an intuitive, key/value pair interface
 and provide sensible validation of the keys used.
 
-Example
--------
-
-The following is an example render of this field's widget render in the Django admin:
-(Note this example is from a django CMS project which uses djangocms-admin-style)
-
-.. image:: imgs/example.png
+.. image:: example.png
     :width: 406px
     :align: left
     :height: 388px
     :alt: Example render of this model field's widget in the Django Admin
 
-------------
+
+Contributing
+============
+
+This is a an open-source project. We'll be delighted to receive your
+feedback in the form of issues and pull requests. Before submitting your
+pull request, please review our `contribution guidelines
+<http://docs.django-cms.org/en/latest/contributing/index.html>`_.
+
+
 Installation
 ------------
 
-To install, simply use: ::
+For a manual install:
 
-    pip install djangocms-attributes-field
-
-then, in your project's ``INSTALLED_APPS`` (if applicable) add: ::
-
-    # settings.py
-    ...
-    INSTALLED_APPS = [
-        ...,
-        djangocms_attributes_field,
-        ...,
-    ]
+* run ``pip install djangocms-attributes-field``
+* add ``djangocms_attributes_field`` to your ``INSTALLED_APPS``
+* run ``python manage.py migrate djangocms_attributes_field``
 
 
------
-Usage
------
+Configuration
+-------------
 
 AttributeField
---------------
+##############
 
 To use this field in your Models.model: ::
 
@@ -114,7 +103,7 @@ to the field's ``excluded_keys`` are also not included in the output string.
 
 
 AttributeWidget
----------------
+###############
 
 The ``AttributesWidget`` is already used by default by the ``AttributesField``,
 but there may be cases where you'd like to override its usage.
@@ -143,3 +132,22 @@ so in our ``ModelForm``: ::
             self.fields['attributes'].widget = AttributesWidget(key_attrs={'style': 'width:250px'},
                                                                 val_attrs={'style': 'width:500px'})
 
+
+Running Tests
+-------------
+
+You can run tests by executing:
+
+.. code-block:: bash
+
+    virtualenv env
+    source env/bin/activate
+    pip install -r tests/requirements.txt
+    python setup.py test
+
+.. |pypi| image:: https://badge.fury.io/py/djangocms-attributes-field.svg
+    :target: http://badge.fury.io/py/djangocms-attributes-field
+.. |build| image:: https://travis-ci.org/divio/djangocms-attributes-field.svg?branch=master
+    :target: https://travis-ci.org/divio/djangocms-attributes-field
+.. |coverage| image:: https://codecov.io/gh/divio/djangocms-attributes-field/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/divio/djangocms-attributes-field
