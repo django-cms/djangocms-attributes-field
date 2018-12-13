@@ -22,7 +22,11 @@ stored together in a single text field in the database as a JSON blob, but
 provides a nice widget to provide an intuitive, key/value pair interface
 and provide sensible validation of the keys used.
 
-|preview|
+.. image:: example.png
+    :width: 406px
+    :align: left
+    :height: 388px
+    :alt: Example render of this model field's widget in the Django Admin
 
 
 Contributing
@@ -147,5 +151,3 @@ You can run tests by executing:
     :target: https://travis-ci.org/divio/djangocms-attributes-field
 .. |coverage| image:: https://codecov.io/gh/divio/djangocms-attributes-field/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/divio/djangocms-attributes-field
-.. |preview| image:: https://travis-ci.org/divio/djangocms-attributes-field.svg?branch=master
-    :target: https://travis-ci.org/divio/djangocms-attributes-field
