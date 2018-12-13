@@ -2,7 +2,7 @@
 Changelog
 =========
 
-1.0.0 (unreleased)
+1.0.0 (2018-12-13)
 ==================
 
 * Fixed compatibility with Django 2.x
