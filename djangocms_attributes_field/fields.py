@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from __future__ import unicode_literals
 
 import json
@@ -15,7 +14,6 @@ from django.utils.translation import ugettext as _, ugettext_lazy
 from django.utils import six
 
 from .widgets import AttributesWidget
-
 
 regex_key_validator = RegexValidator(regex=r'^[a-z][-a-z0-9_]*\Z',
                                      flags=re.IGNORECASE, code='invalid')
@@ -182,7 +180,7 @@ class AttributesField(models.Field):
                   'value that can be represented in JSON.').format(key=key))
 
     def value_to_string(self, obj):
-        return self._get_val_from_obj(obj)
+        return self.value_from_object(obj)
 
     @classmethod
     def to_str(cls, obj, field_name):
