@@ -5,15 +5,17 @@ import json
 import re
 
 from django import forms
-from django.core.validators import RegexValidator
 from django.core.exceptions import ImproperlyConfigured, ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.functional import curry
-from django.utils.html import mark_safe, conditional_escape
-from django.utils.translation import ugettext as _, ugettext_lazy
 from django.utils import six
+from django.utils.functional import curry
+from django.utils.html import conditional_escape, mark_safe
+from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy
 
 from .widgets import AttributesWidget
+
 
 regex_key_validator = RegexValidator(regex=r'^[a-z][-a-z0-9_]*\Z',
                                      flags=re.IGNORECASE, code='invalid')

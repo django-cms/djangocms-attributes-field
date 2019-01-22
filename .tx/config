@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[djangocms-attributes-field.djangocms_attributes_field]
+file_filter = djangocms_attributes_field/locale/<lang>/LC_MESSAGES/django.po
+source_file = djangocms_attributes_field/locale/en/LC_MESSAGES/django.po
+source_lang = en
+type = PO

@@ -4,29 +4,35 @@
 # djangocms-attributes-field package.
 # DIVIO <info@divio.com>, 2016.
 # 
+# Translators:
+# Angelo Dini <angelo.dini@divio.ch>, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-22 09:42+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2019-01-22 08:45+0000\n"
+"Last-Translator: Angelo Dini <angelo.dini@divio.ch>, 2019\n"
+"Language-Team: German (https://www.transifex.com/divio/teams/58664/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: djangocms_attributes_field/fields.py:64
 #, python-format
 msgid "'%s' is not a valid JSON string."
-msgstr "'%s' is not a valid JSON string."
+msgstr "'%s' ist kein gültiger JSON string."
 
 #: djangocms_attributes_field/fields.py:157
 #, python-brace-format
 msgid "\"{key}\" is excluded by configuration and cannot be used as a key."
-msgstr "\"{key}\" is excluded by configuration and cannot be used as a key."
+msgstr ""
+"\"{key}\" ist durch vorhandene Einstellungen ausgeschlossen und darf nicht "
+"benutzt werden."
 
 #: djangocms_attributes_field/fields.py:166
 #, python-brace-format
@@ -34,8 +40,8 @@ msgid ""
 "\"{key}\" is not a valid key. Keys must start with at least one letter and "
 "consist only of the letters, numbers, underscores or hyphens."
 msgstr ""
-"\"{key}\" is not a valid key. Keys must start with at least one letter and "
-"consist only of the letters, numbers, underscores or hyphens."
+"\"{key}\" ist nicht gültig. Der Wert muss mit einem Buchstaben beginnen und "
+"darf nur Buchstaben, Nummern, Unterstriche und Bindestriche bestehen."
 
 #: djangocms_attributes_field/fields.py:181
 #, python-brace-format
@@ -43,26 +49,26 @@ msgid ""
 "The value for the key \"{key}\" is invalid. Please enter a value that can be"
 " represented in JSON."
 msgstr ""
-"The value for the key \"{key}\" is invalid. Please enter a value that can be"
-" represented in JSON."
+"Der Wert von \"{key}\" ist nicht erlaubt. Ein Wert im JSON-Format muss "
+"angegeben werden."
 
 #: djangocms_attributes_field/fields.py:201
 msgid "\"{field_name}\" is not a field of {obj|r}"
-msgstr "\"{field_name}\" is not a field of {obj|r}"
+msgstr "\"{field_name}\" ist kein Feld von {obj|r}"
 
 #: djangocms_attributes_field/fields.py:209
 #, python-brace-format
 msgid "\"{field_name}\" is not an AttributesField"
-msgstr "\"{field_name}\" is not an AttributesField"
+msgstr "\"{field_name}\" ist kein AttributesField"
 
 #: djangocms_attributes_field/widgets.py:54
 msgid "Remove"
-msgstr "Remove"
+msgstr "Entfernen"
 
 #: djangocms_attributes_field/widgets.py:90
 msgid "Add"
-msgstr "Add"
+msgstr "Hinzufügen"
 
 #: djangocms_attributes_field/widgets.py:91
 msgid "Add another key/value pair"
-msgstr "Add another key/value pair"
+msgstr "Ein neues key/value Pair hinzufügen"
