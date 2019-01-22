@@ -2,7 +2,6 @@
 django CMS Attributes Field
 ===========================
 
-
 |pypi| |build| |coverage|
 
 An opinionated implementation of JSONField for arbitrary HTML
@@ -22,11 +21,7 @@ stored together in a single text field in the database as a JSON blob, but
 provides a nice widget to provide an intuitive, key/value pair interface
 and provide sensible validation of the keys used.
 
-.. image:: example.png
-    :width: 406px
-    :align: left
-    :height: 388px
-    :alt: Example render of this model field's widget in the Django Admin
+.. image:: preview.gif
 
 
 Contributing
@@ -36,6 +31,22 @@ This is a an open-source project. We'll be delighted to receive your
 feedback in the form of issues and pull requests. Before submitting your
 pull request, please review our `contribution guidelines
 <http://docs.django-cms.org/en/latest/contributing/index.html>`_.
+
+We're grateful to all contributors who have helped create and maintain this package.
+Contributors are listed at the `contributors <https://github.com/divio/djangocms-attributes-field/graphs/contributors>`_
+section.
+
+One of the easiest contributions you can make is helping to translate this addon on
+`Transifex <https://www.transifex.com/projects/p/djangocms-attributes-field/>`_.
+
+
+Documentation
+=============
+
+See ``REQUIREMENTS`` in the `setup.py <https://github.com/divio/djangocms-audio/blob/master/setup.py>`_
+file for additional dependencies:
+
+|python| |django| |djangocms|
 
 
 Installation
@@ -136,14 +147,13 @@ so in our ``ModelForm``: ::
 Running Tests
 -------------
 
-You can run tests by executing:
-
-.. code-block:: bash
+You can run tests by executing::
 
     virtualenv env
     source env/bin/activate
     pip install -r tests/requirements.txt
     python setup.py test
+
 
 .. |pypi| image:: https://badge.fury.io/py/djangocms-attributes-field.svg
     :target: http://badge.fury.io/py/djangocms-attributes-field
@@ -151,3 +161,10 @@ You can run tests by executing:
     :target: https://travis-ci.org/divio/djangocms-attributes-field
 .. |coverage| image:: https://codecov.io/gh/divio/djangocms-attributes-field/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/divio/djangocms-attributes-field
+
+.. |python| image:: https://img.shields.io/badge/python-2.7%20%7C%203.4+-blue.svg
+    :target: https://pypi.org/project/djangocms-attributes-field/
+.. |django| image:: https://img.shields.io/badge/django-1.11%20%7C%202.0%20%7C%202.1-blue.svg
+    :target: https://www.djangoproject.com/
+.. |djangocms| image:: https://img.shields.io/badge/django%20CMS-3.4%2B-blue.svg
+    :target: https://www.django-cms.org/
