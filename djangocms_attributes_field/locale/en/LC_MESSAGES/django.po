@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-16 11:05-0400\n"
+"POT-Creation-Date: 2019-01-22 09:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,38 +18,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: fields.py:68
-msgid "\"{field_name}\" is not a field of {obj|r}"
+#: djangocms_attributes_field/fields.py:64
+#, python-format
+msgid "'%s' is not a valid JSON string."
 msgstr ""
 
-#: fields.py:76
-#, python-brace-format
-msgid "\"{field_name}\" is not an AttributesField"
-msgstr ""
-
-#: fields.py:105
+#: djangocms_attributes_field/fields.py:157
 #, python-brace-format
 msgid "\"{key}\" is excluded by configuration and cannot be used as a key."
 msgstr ""
 
-#: fields.py:114
+#: djangocms_attributes_field/fields.py:166
 #, python-brace-format
 msgid ""
 "\"{key}\" is not a valid key. Keys must start with at least one letter and "
 "consist only of the letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: fields.py:129
+#: djangocms_attributes_field/fields.py:181
 #, python-brace-format
 msgid ""
 "The value for the key \"{key}\" is invalid. Please enter a value that can be "
 "represented in JSON."
 msgstr ""
 
-#: widgets.py:60
+#: djangocms_attributes_field/fields.py:201
+msgid "\"{field_name}\" is not a field of {obj|r}"
+msgstr ""
+
+#: djangocms_attributes_field/fields.py:209
+#, python-brace-format
+msgid "\"{field_name}\" is not an AttributesField"
+msgstr ""
+
+#: djangocms_attributes_field/widgets.py:54
 msgid "Remove"
 msgstr ""
 
-#: widgets.py:96
+#: djangocms_attributes_field/widgets.py:90
+msgid "Add"
+msgstr ""
+
+#: djangocms_attributes_field/widgets.py:91
 msgid "Add another key/value pair"
 msgstr ""
