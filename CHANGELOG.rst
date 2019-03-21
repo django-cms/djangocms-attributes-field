@@ -6,6 +6,7 @@ Changelog
 1.0.1 (unreleased)
 ==================
 
+* Added support for Django 2.2
 * Extended test matrix
 * Added isort and adapted imports
 * Adapted code base to align with other supported addons
