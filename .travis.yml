@@ -15,12 +15,16 @@ matrix:
       env: DJANGO='dj111' CMS='cms35'
     - python: 3.5
       env: DJANGO='dj111' CMS='cms36'
-    # Django 2.0
-    - python: 3.5
-      env: DJANGO='dj20' CMS='cms36'
+    - python: 3.7
+      env: DJANGO='dj111' CMS='cms37'
     # Django 2.1
     - python: 3.6
       env: DJANGO='dj21' CMS='cms36'
+    - python: 3.6
+      env: DJANGO='dj21' CMS='cms37'
+    # Django 2.2
+    - python: 3.6
+      env: DJANGO='dj22' CMS='cms37'
 
 install:
   - pip install coverage isort tox
