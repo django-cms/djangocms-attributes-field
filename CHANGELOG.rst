@@ -6,7 +6,7 @@ Changelog
 1.0.1 (unreleased)
 ==================
 
-* Introduced support for Django 2.2 and CMS 3.7
+* Introduced support for CMS 3.7 and Django 2.2
 * Removed support for Django 2.0
 * Extended test matrix
 * Added isort and adapted imports
