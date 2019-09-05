@@ -3,6 +3,13 @@ Changelog
 =========
 
 
+1.1.1 (unreleased)
+==================
+
+* Added further tests to raise coverage
+* Fixed smaller issues found during testing
+
+
 1.1.0 (2019-04-16)
 ==================
 
