@@ -192,7 +192,7 @@ class AttributesWidget(Widget):
         """
         key_field = 'attributes_key[{0}]'.format(name)
         val_field = 'attributes_value[{0}]'.format(name)
-        if key_field in data and val_field in data:
+        if key_field in data and val_field in data:  # pragma: no cover
             keys = data.getlist(key_field)
             values = data.getlist(val_field)
             return dict([item for item in zip(keys, values) if not item[0] == ''])

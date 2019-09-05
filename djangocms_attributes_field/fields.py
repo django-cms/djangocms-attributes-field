@@ -83,7 +83,8 @@ class AttributesField(models.Field):
         defaults.update(**kwargs)
         return super(AttributesField, self).formfield(**defaults)
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value,
+                      expression=None, connection=None, context=None):
         """
         This is a temporary workaround for #7 taken from
         https://bitbucket.org/schinckel/django-jsonfield/pull-requests/32/make-from_db_value-compatible-with/diff
@@ -119,7 +120,7 @@ class AttributesField(models.Field):
     def get_internal_type(self):
         return 'TextField'
 
-    def contribute_to_class(self, cls, name, **kwargs):
+    def contribute_to_class(self, cls, name, **kwargs):  # pragma: no cover
         """
         Adds a @property: «name»_str that returns a string representation of
         the attributes ready for inclusion on an HTML element.
@@ -136,7 +137,7 @@ class AttributesField(models.Field):
             raise ValidationError(self.error_messages['null'])
         try:
             self.get_prep_value(value)
-        except ValueError:
+        except ValueError:  # pragma: no cover
             raise ValidationError(self.error_messages['invalid'] % value)
 
         for key, val in value.items():
@@ -176,16 +177,16 @@ class AttributesField(models.Field):
         """
         try:
             json.dumps(value)
-        except (TypeError, ValueError):
+        except (TypeError, ValueError):  # pragma: no cover
             raise ValidationError(
                 _('The value for the key "{key}" is invalid. Please enter a '
                   'value that can be represented in JSON.').format(key=key))
 
-    def value_to_string(self, obj):
+    def value_to_string(self, obj):  # pragma: no cover
         return self.value_from_object(obj)
 
     @classmethod
-    def to_str(cls, obj, field_name):
+    def to_str(cls, obj, field_name):  # pragma: no cover
         """
         Emits stored attributes as a String suitable for for adding to an
         HTML element and performs an outbound filter of excluded_keys.
