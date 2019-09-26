@@ -120,7 +120,7 @@ class AttributesField(models.Field):
     def get_internal_type(self):
         return 'TextField'
 
-    def contribute_to_class(self, cls, name, **kwargs):  # pragma: no cover
+    def contribute_to_class(self, cls, name, **kwargs):
         """
         Adds a @property: «name»_str that returns a string representation of
         the attributes ready for inclusion on an HTML element.
@@ -137,7 +137,7 @@ class AttributesField(models.Field):
             raise ValidationError(self.error_messages['null'])
         try:
             self.get_prep_value(value)
-        except ValueError:  # pragma: no cover
+        except ValueError:
             raise ValidationError(self.error_messages['invalid'] % value)
 
         for key, val in value.items():
@@ -177,16 +177,16 @@ class AttributesField(models.Field):
         """
         try:
             json.dumps(value)
-        except (TypeError, ValueError):  # pragma: no cover
+        except (TypeError, ValueError):
             raise ValidationError(
                 _('The value for the key "{key}" is invalid. Please enter a '
                   'value that can be represented in JSON.').format(key=key))
 
-    def value_to_string(self, obj):  # pragma: no cover
+    def value_to_string(self, obj):
         return self.value_from_object(obj)
 
     @classmethod
-    def to_str(cls, obj, field_name):  # pragma: no cover
+    def to_str(cls, obj, field_name):
         """
         Emits stored attributes as a String suitable for for adding to an
         HTML element and performs an outbound filter of excluded_keys.
