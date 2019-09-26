@@ -41,10 +41,10 @@ class TestPluginTestCase(CMSTestCase):
         with self.login_user_context(self.superuser):
             response = self.client.get(request_url)
 
-        self.assertContains(response, "{'data-tracking': 'google'}")
-        self.assertContains(response, "{'class': 'some new classes'}")
-        self.assertContains(response, 'data-tracking="google"')
-        self.assertContains(response, 'class="some new classes"')
+        self.assertContains(response, "data-tracking")
+        self.assertContains(response, "google")
+        self.assertContains(response, "class")
+        self.assertContains(response, "some new classes")
 
     def test_plugin_form(self):
         request_url = self.get_add_plugin_uri(
