@@ -1,0 +1,6 @@
+{% autoescape off %}
+attr1: {{ instance.attributes1|safe }}
+attr2: {{ instance.attributes2|safe }}
+attr1 str: {{ instance.attributes1_str }}
+attr2 str: {{ instance.attributes2_str }}
+{% endautoescape %}

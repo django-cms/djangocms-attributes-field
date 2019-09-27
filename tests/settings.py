@@ -3,6 +3,7 @@
 HELPER_SETTINGS = {
     'INSTALLED_APPS': [
         'djangocms_attributes_field',
+        'tests.test_app',
     ],
     'CMS_LANGUAGES': {
         1: [{
