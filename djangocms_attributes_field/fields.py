@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import json
 import re
+from functools import partial
 
 from django import forms
 from django.core.exceptions import ImproperlyConfigured, ValidationError
@@ -12,7 +13,6 @@ from django.utils.html import conditional_escape, mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
 
-from functools import partial
 from six import string_types, u
 
 from .widgets import AttributesWidget
