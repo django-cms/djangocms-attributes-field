@@ -8,11 +8,12 @@ from django import forms
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
-from django.utils import six
-from django.utils.functional import curry
 from django.utils.html import conditional_escape, mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
+
+from functools import partialmethod
+from six import string_types, u
 
 from .widgets import AttributesWidget
 
@@ -29,12 +30,12 @@ class AttributesFormField(forms.CharField):
         super(AttributesFormField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
-        if isinstance(value, six.string_types) and value:
+        if isinstance(value, string_types) and value:
             try:
                 return json.loads(value)
             except ValueError as exc:
                 raise forms.ValidationError(
-                    'JSON decode error: %s' % (six.u(exc.args[0]),)
+                    'JSON decode error: %s' % (u(exc.args[0]),)
                 )
         else:
             return value
@@ -92,7 +93,7 @@ class AttributesField(models.Field):
         """
         if value is None:
             return None
-        elif isinstance(value, six.string_types):
+        elif isinstance(value, string_types):
             return json.loads(value)
         else:
             return value
@@ -112,7 +113,7 @@ class AttributesField(models.Field):
             default = self.default
             if callable(default):
                 default = default()
-            if isinstance(default, six.string_types):
+            if isinstance(default, string_types):
                 return json.loads(default)
             return json.loads(json.dumps(default))
         return super(AttributesField, self).get_default()
@@ -129,7 +130,7 @@ class AttributesField(models.Field):
         # Make sure we're not going to clobber something that already exists.
         property_name = '{name}_str'.format(name=name)
         if not hasattr(cls, property_name):
-            str_property = curry(self.to_str, field_name=name)
+            str_property = partialmethod(self.to_str, field_name=name)
             setattr(cls, property_name, property(str_property))
 
     def validate(self, value, model_instance):
