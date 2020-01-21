@@ -12,7 +12,7 @@ from django.utils.html import conditional_escape, mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
 
-from functools import partialmethod
+from functools import partial
 from six import string_types, u
 
 from .widgets import AttributesWidget
@@ -130,7 +130,7 @@ class AttributesField(models.Field):
         # Make sure we're not going to clobber something that already exists.
         property_name = '{name}_str'.format(name=name)
         if not hasattr(cls, property_name):
-            str_property = partialmethod(self.to_str, field_name=name)
+            str_property = partial(self.to_str, field_name=name)
             setattr(cls, property_name, property(str_property))
 
     def validate(self, value, model_instance):
