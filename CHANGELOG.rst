@@ -3,9 +3,11 @@ Changelog
 =========
 
 
-1.1.1 (unreleased)
+1.2.0 (2020-01-22)
 ==================
 
+* Added support for Django 3.0
+* Added support for Python 3.8
 * Added further tests to raise coverage
 * Fixed smaller issues found during testing
 
