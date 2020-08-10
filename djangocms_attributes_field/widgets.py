@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.forms import Widget
 from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags

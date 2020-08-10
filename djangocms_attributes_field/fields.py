@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import json
 import re
 from functools import partial
@@ -12,8 +10,6 @@ from django.db import models
 from django.utils.html import conditional_escape, mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
-
-from six import string_types, u
 
 from .widgets import AttributesWidget
 
@@ -30,12 +26,12 @@ class AttributesFormField(forms.CharField):
         super(AttributesFormField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
-        if isinstance(value, string_types) and value:
+        if isinstance(value, str) and value:
             try:
                 return json.loads(value)
             except ValueError as exc:
                 raise forms.ValidationError(
-                    'JSON decode error: %s' % (u(exc.args[0]),)
+                    'JSON decode error: %s' % (str(exc.args[0]),)
                 )
         else:
             return value
@@ -93,7 +89,7 @@ class AttributesField(models.Field):
         """
         if value is None:
             return None
-        elif isinstance(value, string_types):
+        elif isinstance(value, str):
             return json.loads(value)
         else:
             return value
@@ -113,7 +109,7 @@ class AttributesField(models.Field):
             default = self.default
             if callable(default):
                 default = default()
-            if isinstance(default, string_types):
+            if isinstance(default, str):
                 return json.loads(default)
             return json.loads(json.dumps(default))
         return super(AttributesField, self).get_default()
