@@ -84,7 +84,6 @@ class AttributesWidget(Widget):
             <a class="add-attributes-pair addlink" href="#" title="{title}"></a>
         </div>
         """.format(
-            label=_('Add'),
             title=_('Add another key/value pair'),
         )
         output += '</div>'
