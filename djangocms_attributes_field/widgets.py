@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.forms import Widget
 from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags
@@ -18,7 +17,7 @@ class AttributesWidget(Widget):
         """
         self.key_attrs = kwargs.pop('key_attrs', {})
         self.val_attrs = kwargs.pop('val_attrs', {})
-        super(AttributesWidget, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def _render_row(self, key, value, field_name, key_attrs, val_attrs):
         """

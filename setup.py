@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 from setuptools import find_packages, setup
 
 from djangocms_attributes_field import __version__
 
 
 REQUIREMENTS = [
-    'django-cms>=3.7',
+    'django-cms>=3.6',
 ]
 
 

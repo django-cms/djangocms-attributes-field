@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.core.exceptions import ValidationError
 from django.db.models.fields import NOT_PROVIDED
 from django.test.testcases import TestCase

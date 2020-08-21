@@ -139,7 +139,7 @@ so in our ``ModelForm``: ::
             fields = ['attributes', ...]
 
         def __init__(self, *args, **kwargs):
-            super(MyCoolForm, self).__init__(*args, **kwargs)
+            super().__init__(*args, **kwargs)
             self.fields['attributes'].widget = AttributesWidget(key_attrs={'style': 'width:250px'},
                                                                 val_attrs={'style': 'width:500px'})
 
