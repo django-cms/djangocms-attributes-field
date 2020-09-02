@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.test.testcases import TestCase
 
 from djangocms_attributes_field.widgets import AttributesWidget

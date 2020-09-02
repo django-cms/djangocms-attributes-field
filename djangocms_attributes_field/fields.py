@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import json
 import re
 from functools import partial
@@ -12,8 +9,6 @@ from django.db import models
 from django.utils.html import conditional_escape, mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
-
-from six import string_types, u
 
 from .widgets import AttributesWidget
 
@@ -27,15 +22,15 @@ class AttributesFormField(forms.CharField):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('widget', AttributesWidget)
-        super(AttributesFormField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def to_python(self, value):
-        if isinstance(value, string_types) and value:
+        if isinstance(value, str) and value:
             try:
                 return json.loads(value)
             except ValueError as exc:
                 raise forms.ValidationError(
-                    'JSON decode error: %s' % (u(exc.args[0]),)
+                    'JSON decode error: %s' % (str(exc.args[0]),)
                 )
         else:
             return value
@@ -73,7 +68,7 @@ class AttributesField(models.Field):
         # Note we accept uppercase letters in the param, but the comparison
         # is not case sensitive. So, we coerce the input to lowercase here.
         self.excluded_keys = [key.lower() for key in excluded_keys]
-        super(AttributesField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.validate(self.get_default(), None)
 
     def formfield(self, **kwargs):
@@ -82,7 +77,7 @@ class AttributesField(models.Field):
             'widget': AttributesWidget
         }
         defaults.update(**kwargs)
-        return super(AttributesField, self).formfield(**defaults)
+        return super().formfield(**defaults)
 
     def from_db_value(self, value,
                       expression=None, connection=None, context=None):
@@ -93,7 +88,7 @@ class AttributesField(models.Field):
         """
         if value is None:
             return None
-        elif isinstance(value, string_types):
+        elif isinstance(value, str):
             return json.loads(value)
         else:
             return value
@@ -113,10 +108,10 @@ class AttributesField(models.Field):
             default = self.default
             if callable(default):
                 default = default()
-            if isinstance(default, string_types):
+            if isinstance(default, str):
                 return json.loads(default)
             return json.loads(json.dumps(default))
-        return super(AttributesField, self).get_default()
+        return super().get_default()
 
     def get_internal_type(self):
         return 'TextField'
@@ -126,7 +121,7 @@ class AttributesField(models.Field):
         Adds a @property: «name»_str that returns a string representation of
         the attributes ready for inclusion on an HTML element.
         """
-        super(AttributesField, self).contribute_to_class(cls, name, **kwargs)
+        super().contribute_to_class(cls, name, **kwargs)
         # Make sure we're not going to clobber something that already exists.
         property_name = '{name}_str'.format(name=name)
         if not hasattr(cls, property_name):
