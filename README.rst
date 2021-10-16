@@ -4,8 +4,6 @@ django CMS Attributes Field
 
 |pypi| |build| |coverage|
 
-This project is considered 3rd party (no supervision by the `django CMS Association <https://www.django-cms.org/en/about-us/>`_). Join us on `Slack <https://www.django-cms.org/slack/>`_ for more information.
-
 This project is an opinionated implementation of JSONField for arbitrary HTML
 element attributes.
 
@@ -22,6 +20,12 @@ To avoid these pitfalls, this package allows all of these attributes to be
 stored together in a single text field in the database as a JSON blob, but
 provides a nice widget to provide an intuitive, key/value pair interface
 and provide sensible validation of the keys used.
+
+
+.. note:: 
+
+    This project is considered 3rd party (no supervision by the `django CMS Association <https://www.django-cms.org/en/about-us/>`_). Join us on `Slack                 <https://www.django-cms.org/slack/>`_ for more information.
+
 
 .. image:: preview.gif
 
