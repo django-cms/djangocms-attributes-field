@@ -4,10 +4,12 @@ django CMS Attributes Field
 
 |pypi| |build| |coverage|
 
-An opinionated implementation of JSONField for arbitrary HTML
+This project is considered 3rd party (no supervision by the `django CMS Association <https://www.django-cms.org/en/about-us/>`_). Join us on `Slack <https://www.django-cms.org/slack/>`_ for more information.
+
+This project is an opinionated implementation of JSONField for arbitrary HTML
 element attributes.
 
-This project aims to provide a sensible means of storing and managing
+It aims to provide a sensible means of storing and managing
 arbitrary HTML element attributes for later emitting them into templates.
 
 There are a wide variety of types of attributes and using the "normal" Django
@@ -24,20 +26,26 @@ and provide sensible validation of the keys used.
 .. image:: preview.gif
 
 
-Contributing
-============
+*******************************************
+Contribute to this project and win rewards
+*******************************************
 
-This is a an open-source project. We'll be delighted to receive your
+Because this is a an open-source project, we welcome everyone to
+`get involved in the project <https://www.django-cms.org/en/contribute/>`_ and
+`receive a reward <https://www.django-cms.org/en/bounty-program/>`_ for their contribution. 
+Become part of a fantastic community and help us make django CMS the best CMS in the world.   
+
+We'll be delighted to receive your
 feedback in the form of issues and pull requests. Before submitting your
 pull request, please review our `contribution guidelines
 <http://docs.django-cms.org/en/latest/contributing/index.html>`_.
 
 We're grateful to all contributors who have helped create and maintain this package.
-Contributors are listed at the `contributors <https://github.com/divio/djangocms-attributes-field/graphs/contributors>`_
+Contributors are listed at the `contributors <https://github.com/divio/djangocms-text-ckeditor/graphs/contributors>`_
 section.
 
 One of the easiest contributions you can make is helping to translate this addon on
-`Transifex <https://www.transifex.com/projects/p/djangocms-attributes-field/>`_.
+`Transifex <https://www.transifex.com/projects/p/djangocms-text-ckeditor/>`_.
 
 
 Documentation
