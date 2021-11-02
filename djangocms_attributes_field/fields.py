@@ -72,10 +72,6 @@ class AttributesField(models.Field):
         self.excluded_keys = [key.lower() for key in excluded_keys]
         super().__init__(*args, **kwargs)
         self.validate(self.get_default(), None)
-        if DJANGO_2_2:
-            self.from_db_value = self._from_db_value_django_2_2_compatible
-        else:
-            self.from_db_value = self._from_db_value
 
     def formfield(self, **kwargs):
         defaults = {
@@ -85,12 +81,19 @@ class AttributesField(models.Field):
         defaults.update(**kwargs)
         return super().formfield(**defaults)
 
-    def _from_db_value_django_2_2_compatible(self, value,
-                                             expression=None, connection=None, context=None):
-        self._from_db_value(value, expression=expression, connection=connection)
+    # This was added to keep backwards compatibility with Django 2.2 while also
+    # avoiding a RemovedInDjango30Warning caused by the deprecation of
+    # context argument
+    if DJANGO_2_2:
+        def from_db_value(self, value,
+                          expression=None, connection=None, context=None):
+            self._from_db_value(value)
+    else:
+        def from_db_value(self, value,
+                          expression=None, connection=None):
+            self._from_db_value(value)
 
-    def _from_db_value(self, value,
-                       expression=None, connection=None):
+    def _from_db_value(self, value):
         """
         This is a temporary workaround for #7 taken from
         https://bitbucket.org/schinckel/django-jsonfield/pull-requests/32/make-from_db_value-compatible-with/diff
