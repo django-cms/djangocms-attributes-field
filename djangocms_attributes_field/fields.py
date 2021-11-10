@@ -10,7 +10,7 @@ from django.utils.html import conditional_escape, mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
 
-from cms.utils.compat import DJANGO_2_2
+from utils import DJANGO_2_2
 
 from .widgets import AttributesWidget
 
