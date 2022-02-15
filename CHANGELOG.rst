@@ -2,6 +2,11 @@
 Changelog
 =========
 
+unreleased
+==========
+
+* Fix add / delete buttons if djangocms-admin-style is not installed
+
 
 2.0.0 (2020-09-02)
 ==================
