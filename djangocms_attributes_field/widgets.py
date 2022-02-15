@@ -120,7 +120,7 @@ class AttributesWidget(Widget):
             .attributes-pair .field-box:last-child {
                 display: table-cell !important;
                 vertical-align: top !important;
-                width: 100% !important;
+                width: 75% !important;
                 float: none !important;
             }
             .djangocms-attributes-field .attributes-pair .attributes-value {
