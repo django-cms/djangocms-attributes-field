@@ -94,12 +94,15 @@ class AttributesWidget(Widget):
         # INSTALLED_APPS. By inlining the JS and CSS here, we avoid this.
         output += """
         <style>
-            .delete-attributes-pair,
-            .add-attributes-pair {
+            body.djangocms-admin-style .delete-attributes-pair,
+            body.djangocms-admin-style .add-attributes-pair {
                 border: 1px solid #ddd;
                 border-radius: 3px;
                 display: inline-block;
                 padding: 6px 5px 8px 10px;
+            }
+            .delete-attributes-pair, .add-attributes-pair {
+                line-height: 2;
             }
             .attributes-pair {
                 display: table;
@@ -152,6 +155,7 @@ class AttributesWidget(Widget):
                         var emptyRow = that.find('.template');
                         var btnAdd = that.find('.add-attributes-pair');
                         var btnDelete = that.find('.delete-attributes-pair');
+
 
                         btnAdd.on('click', function (event) {
                             event.preventDefault();
