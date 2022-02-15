@@ -100,6 +100,8 @@ class AttributesWidget(Widget):
                 border-radius: 3px;
                 display: inline-block;
                 padding: 6px 5px 8px 10px;
+                line-height: inherit;
+
             }
             .delete-attributes-pair, .add-attributes-pair {
                 line-height: 2;
