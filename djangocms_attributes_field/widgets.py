@@ -101,7 +101,6 @@ class AttributesWidget(Widget):
                 display: inline-block;
                 padding: 6px 5px 8px 10px;
                 line-height: inherit;
-
             }
             .delete-attributes-pair, .add-attributes-pair {
                 line-height: 2;
@@ -157,7 +156,6 @@ class AttributesWidget(Widget):
                         var emptyRow = that.find('.template');
                         var btnAdd = that.find('.add-attributes-pair');
                         var btnDelete = that.find('.delete-attributes-pair');
-
 
                         btnAdd.on('click', function (event) {
                             event.preventDefault();
