@@ -94,12 +94,16 @@ class AttributesWidget(Widget):
         # INSTALLED_APPS. By inlining the JS and CSS here, we avoid this.
         output += """
         <style>
-            .delete-attributes-pair,
-            .add-attributes-pair {
+            body.djangocms-admin-style .delete-attributes-pair,
+            body.djangocms-admin-style .add-attributes-pair {
                 border: 1px solid #ddd;
                 border-radius: 3px;
                 display: inline-block;
                 padding: 6px 5px 8px 10px;
+                line-height: inherit;
+            }
+            .delete-attributes-pair, .add-attributes-pair {
+                line-height: 2;
             }
             .attributes-pair {
                 display: table;
@@ -115,7 +119,7 @@ class AttributesWidget(Widget):
             .attributes-pair .field-box:last-child {
                 display: table-cell !important;
                 vertical-align: top !important;
-                width: 100% !important;
+                width: 75% !important;
                 float: none !important;
             }
             .djangocms-attributes-field .attributes-pair .attributes-value {
