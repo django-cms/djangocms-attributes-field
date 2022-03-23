@@ -1,7 +1,7 @@
 from django.forms import Widget
 from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class AttributesWidget(Widget):
