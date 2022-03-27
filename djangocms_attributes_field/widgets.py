@@ -1,7 +1,7 @@
 from django.forms import Widget
 from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class AttributesWidget(Widget):
@@ -13,10 +13,11 @@ class AttributesWidget(Widget):
     # https://www.huyng.com/posts/django-custom-form-widget-for-dictionary-and-tuple-key-value-pairs
     def __init__(self, *args, **kwargs):
         """
-        Supports additional kwargs: `key_attr` and `val_attr`.
+        Supports additional kwargs: `key_attr`, `val_attr`, `sorted`.
         """
         self.key_attrs = kwargs.pop('key_attrs', {})
         self.val_attrs = kwargs.pop('val_attrs', {})
+        self.sorted = sorted if kwargs.pop('sorted', True) else lambda x: x
         super().__init__(*args, **kwargs)
 
     def _render_row(self, key, value, field_name, key_attrs, val_attrs):
@@ -69,7 +70,7 @@ class AttributesWidget(Widget):
 
         output = '<div class="djangocms-attributes-field">'
         if value and isinstance(value, dict) and len(value) > 0:
-            for key in sorted(value):
+            for key in self.sorted(value):
                 output += self._render_row(key, value[key], name, flatatt(self.key_attrs), flatatt(self.val_attrs))
 
         # Add empty template
@@ -121,6 +122,9 @@ class AttributesWidget(Widget):
                 vertical-align: top !important;
                 width: 75% !important;
                 float: none !important;
+            }
+            body:not(.djangocms-admin-style) .attributes-pair .field-box:first-child input {
+                width: calc(100% - 1.3em);
             }
             .djangocms-attributes-field .attributes-pair .attributes-value {
                 width: 60% !important;
