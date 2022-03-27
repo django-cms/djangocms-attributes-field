@@ -67,7 +67,7 @@ class AttributesFieldsTestCase(TestCase):
     def test_attributes_form_field(self):
         field = AttributesFormField()
         # to_python method
-        self.assertEquals(field.to_python({"test": True}), {"test": True})
+        self.assertEqual(field.to_python({"test": True}), {"test": True})
         with self.assertRaises(ValidationError):
             field.to_python("no json")
         # validate method
@@ -79,14 +79,14 @@ class AttributesFieldsTestCase(TestCase):
     def test_attributes_field(self):
         field = AttributesField(null=True, default={"my": "default"})
         # formfield method
-        self.assertEquals(field.formfield().initial, {"my": "default"})
+        self.assertEqual(field.formfield().initial, {"my": "default"})
         # from_db_value method
         self.assertIsNone(field.from_db_value(None))
-        self.assertEquals(
+        self.assertEqual(
             field.from_db_value('{"test": "test"}'),
             {"test": "test"},
         )
-        self.assertEquals(
+        self.assertEqual(
             field.from_db_value({"test": "test"}),
             {"test": "test"},
         )
@@ -94,13 +94,13 @@ class AttributesFieldsTestCase(TestCase):
         self.assertIsNone(field.get_db_prep_value(None))
         field.null = False
         field.blank = True
-        self.assertEquals(field.get_db_prep_value(None), "")
+        self.assertEqual(field.get_db_prep_value(None), "")
         # get_default method
         field = AttributesField(default='{"my": "default"}')
         field.default = NOT_PROVIDED
         field.get_default()
         # get_internal_type method
-        self.assertEquals(field.get_internal_type(), "TextField")
+        self.assertEqual(field.get_internal_type(), "TextField")
         # validate method
         with self.assertRaises(ValidationError):
             field.validate(None, Noop)

@@ -67,7 +67,7 @@ class TestPluginTestCase(CMSTestCase):
             warnings.simplefilter("ignore")
             response = self.client.post(request_url, data)
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response, '<div class="success">')
 
         # test error for excluded keys
