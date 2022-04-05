@@ -56,7 +56,7 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
-        run: python -m pip install --upgrade coverage[toml]
+        run: python -m pip install --upgrade coverage
 
       - name: Download data
         uses: actions/download-artifact@v2
