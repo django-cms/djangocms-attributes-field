@@ -1,0 +1,80 @@
+name: CodeCov
+
+on:
+  push:
+    branches:
+    - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.8, 3.9, ]
+        os: [
+            ubuntu-20.04,
+        ]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '2'
+
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: pip
+        cache-dependency-path: 'requirements/*.txt'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade tox tox-py
+
+    - name: Run tox targets for ${{ matrix.python-version }}
+      run: tox --py current
+
+    - name: Upload coverage data
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-data
+        path: '.coverage.*'
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-20.04
+    needs: tests
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@master
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade coverage
+
+      - name: Download data
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage-data
+
+      - name: Combine coverage
+        run: |
+          python -m coverage combine
+          python -m coverage html --skip-covered --skip-empty
+          python -m coverage report
+
+      - name: Upload HTML report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: html-report
+          path: htmlcov
