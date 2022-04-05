@@ -6,9 +6,11 @@ unreleased
 ==========
 
 * Release automation
+* Added pre-commit
 * Drop support for Python 3.5, 3.6
 * Drop support for django < 3.2
-* Added support for
+* Added support for Python 3.9, 3.10
+* Added support for django 3.2
 
 2.1.0 (2022-03-27)
 ==========
