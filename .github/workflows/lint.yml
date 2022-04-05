@@ -35,4 +35,4 @@ jobs:
         uses: liskin/gh-problem-matcher-wrap@v1
         with:
           linters: isort
-          run: isort -c djangocms_attributes_field
+          run: isort djangocms_attributes_field --check --diff
