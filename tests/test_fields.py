@@ -2,9 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db.models.fields import NOT_PROVIDED
 from django.test.testcases import TestCase
 
-from djangocms_attributes_field.fields import (
-    AttributesField, AttributesFormField,
-)
+from djangocms_attributes_field.fields import AttributesField, AttributesFormField
 
 
 class Noop:
@@ -54,7 +52,7 @@ class KeyValidationTests(TestCase):
             self.fail('Keys that pass have failed.')
 
         # Now show that they no longer pass if explicitly exclude
-        field = AttributesField(excluded_keys=['href', 'src', ])
+        field = AttributesField(excluded_keys=['href', 'src'])
 
         with self.assertRaises(ValidationError):
             field.validate_key('href')

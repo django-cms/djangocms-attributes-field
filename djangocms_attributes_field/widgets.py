@@ -75,7 +75,7 @@ class AttributesWidget(Widget):
 
         # Add empty template
         output += """
-        <div class="template hidden">{0}
+        <div class="template hidden">{}
         </div>""".format(self._render_row('', '', name, flatatt(self.key_attrs), flatatt(self.val_attrs)))
 
         # Add "+" button
@@ -194,8 +194,8 @@ class AttributesWidget(Widget):
         :param files: (list) request.FILES
         :param name: (str) the name of the field associated with this widget.
         """
-        key_field = 'attributes_key[{0}]'.format(name)
-        val_field = 'attributes_value[{0}]'.format(name)
+        key_field = f'attributes_key[{name}]'
+        val_field = f'attributes_value[{name}]'
         if key_field in data and val_field in data:
             keys = data.getlist(key_field)
             values = data.getlist(val_field)

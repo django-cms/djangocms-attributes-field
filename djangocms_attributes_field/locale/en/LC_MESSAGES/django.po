@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the
 # djangocms-attributes-field package.
 # DIVIO <info@divio.com>, 2016.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
