@@ -5,6 +5,11 @@ Changelog
 unreleased
 ==========
 
+* Release automation
+* Drop support for Python 3.5, 3.6
+* Drop support for django < 3.2
+* Added support for
+
 2.1.0 (2022-03-27)
 ==========
 

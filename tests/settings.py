@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 HELPER_SETTINGS = {
+    'SECRET_KEY': 'HAPPY_NOW?',
     'INSTALLED_APPS': [
         'djangocms_attributes_field',
         'tests.test_app',
