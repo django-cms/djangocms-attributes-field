@@ -5,6 +5,11 @@ Changelog
 unreleased
 ==========
 
+2.1.1 (2022-04-07)
+==========
+
+* Change version requirements for 'django-treebeard' since version v4.5.0 has a breaking change for DjangoCMS.
+
 2.1.0 (2022-03-27)
 ==========
 
