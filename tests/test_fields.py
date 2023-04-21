@@ -25,6 +25,7 @@ class KeyValidationTests(TestCase):
             field.validate_key('a-1')
             field.validate_key('a_1')
             field.validate_key('a-A1_')
+            field.validate_key('v-on:click')
         except ValidationError:
             self.fail('Keys that pass have failed.')
 

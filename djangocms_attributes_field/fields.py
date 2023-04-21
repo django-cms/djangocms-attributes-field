@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from .widgets import AttributesWidget
 
 
-regex_key_validator = RegexValidator(regex=r'^[a-z][-a-z0-9_]*\Z',
+regex_key_validator = RegexValidator(regex=r'^[a-z][-a-z0-9_:]*\Z',
                                      flags=re.IGNORECASE, code='invalid')
 
 
@@ -142,7 +142,7 @@ class AttributesField(models.Field):
     def validate_key(self, key):
         """
         A key must start with a letter, but can otherwise contain letters,
-        numbers, dashes or underscores. It must not also be part of
+        numbers, dashes, colons or underscores. It must not also be part of
         `excluded_keys` as configured in the field.
 
         :param key: (str) The key to validate
