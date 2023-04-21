@@ -29,7 +29,7 @@ class AttributesFormField(forms.CharField):
                 return json.loads(value)
             except ValueError as exc:
                 raise forms.ValidationError(
-                    'JSON decode error: %s' % (str(exc.args[0]),)
+                    'JSON decode error: {}'.format(str(exc.args[0]))
                 )
         else:
             return value
@@ -122,7 +122,7 @@ class AttributesField(models.Field):
         """
         super().contribute_to_class(cls, name, **kwargs)
         # Make sure we're not going to clobber something that already exists.
-        property_name = '{name}_str'.format(name=name)
+        property_name = f'{name}_str'
         if not hasattr(cls, property_name):
             str_property = partial(self.to_str, field_name=name)
             setattr(cls, property_name, property(str_property))
@@ -216,7 +216,7 @@ class AttributesField(models.Field):
         for key, val in value_items:
             if key.lower() not in excluded_keys:
                 if val:
-                    attrs.append('{key}="{value}"'.format(key=key, value=conditional_escape(val)))
+                    attrs.append(f'{key}="{conditional_escape(val)}"')
                 else:
-                    attrs.append('{key}'.format(key=key))
+                    attrs.append(f'{key}')
         return mark_safe(" ".join(attrs))
