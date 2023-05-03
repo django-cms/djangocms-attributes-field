@@ -1,5 +1,6 @@
 import warnings
 
+from cms import __version__
 from cms.api import add_plugin, create_page
 from cms.test_utils.testcases import CMSTestCase
 
@@ -17,8 +18,11 @@ class TestPluginTestCase(CMSTestCase):
             template="page.html",
             language=self.language,
         )
-        self.page.publish(self.language)
-        self.placeholder = self.page.placeholders.get(slot="content")
+        if __version__ < "4":
+            self.page.publish(self.language)
+            self.placeholder = self.page.placeholders.get(slot="content")
+        else:
+            self.placeholder = self.page.get_placeholders(self.language).get(slot="content")
         self.superuser = self.get_superuser()
 
     def tearDown(self):
@@ -27,7 +31,6 @@ class TestPluginTestCase(CMSTestCase):
 
     def test_plugin_rendering(self):
         request_url = self.page.get_absolute_url(self.language) + "?toolbar_off=true"
-
         add_plugin(
             placeholder=self.placeholder,
             plugin_type=TestPluginPlugin.__name__,
@@ -35,7 +38,8 @@ class TestPluginTestCase(CMSTestCase):
             attributes1={"data-tracking": "google"},
             attributes2={"class": "some new classes"},
         )
-        self.page.publish(self.language)
+        if __version__ < "4":
+            self.page.publish(self.language)
 
         with self.login_user_context(self.superuser):
             response = self.client.get(request_url)

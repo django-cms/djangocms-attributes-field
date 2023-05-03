@@ -2,11 +2,16 @@
 Changelog
 =========
 
-unreleased
-==========
+3.0 (unreleaaed)
+================
+
+* Added tests for Django 4.0, 4.1, 4.2
+* Added tests for Python 3.10, 3.11
+* Dropped support for Django < 3.2
+* Dropped support for Python < 3.8
 
 2.1.0 (2022-03-27)
-==========
+==================
 
 * Fix add / delete buttons if djangocms-admin-style is not installed
 

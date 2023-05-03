@@ -2,7 +2,8 @@
 django CMS Attributes Field
 ===========================
 
-|pypi| |build| |coverage|
+|pypi| |coverage|  |python| |django| |djangocms| |djangocms4|
+
 
 This project is an opinionated implementation of JSONField for arbitrary HTML
 element attributes.
@@ -22,7 +23,7 @@ provides a nice widget to provide an intuitive, key/value pair interface
 and provide sensible validation of the keys used.
 
 
-.. note:: 
+.. note::
 
     This project is considered 3rd party (no supervision by the `django CMS Association <https://www.django-cms.org/en/about-us/>`_). Join us on `Slack                 <https://www.django-cms.org/slack/>`_ for more information.
 
@@ -36,8 +37,8 @@ Contribute to this project and win rewards
 
 Because this is a an open-source project, we welcome everyone to
 `get involved in the project <https://www.django-cms.org/en/contribute/>`_ and
-`receive a reward <https://www.django-cms.org/en/bounty-program/>`_ for their contribution. 
-Become part of a fantastic community and help us make django CMS the best CMS in the world.   
+`receive a reward <https://www.django-cms.org/en/bounty-program/>`_ for their contribution.
+Become part of a fantastic community and help us make django CMS the best CMS in the world.
 
 We'll be delighted to receive your
 feedback in the form of issues and pull requests. Before submitting your
@@ -54,8 +55,6 @@ Documentation
 
 See ``REQUIREMENTS`` in the `setup.py <https://github.com/divio/djangocms-attributes-field/blob/master/setup.py>`_
 file for additional dependencies:
-
-|python| |django| |djangocms|
 
 
 Installation
@@ -166,14 +165,13 @@ You can run tests by executing::
 
 .. |pypi| image:: https://badge.fury.io/py/djangocms-attributes-field.svg
     :target: http://badge.fury.io/py/djangocms-attributes-field
-.. |build| image:: https://travis-ci.org/divio/djangocms-attributes-field.svg?branch=master
-    :target: https://travis-ci.org/divio/djangocms-attributes-field
-.. |coverage| image:: https://codecov.io/gh/divio/djangocms-attributes-field/branch/master/graph/badge.svg
+.. |coverage| image:: https://codecov.io/gh/django-cms/djangocms-attributes-field/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/divio/djangocms-attributes-field
-
-.. |python| image:: https://img.shields.io/badge/python-3.5+-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-3.8+-blue.svg
     :target: https://pypi.org/project/djangocms-attributes-field/
-.. |django| image:: https://img.shields.io/badge/django-2.2,%203.0,%203.1-blue.svg
+.. |django| image:: https://img.shields.io/badge/django-3.2,%204.0--%204.2-blue.svg
     :target: https://www.djangoproject.com/
-.. |djangocms| image:: https://img.shields.io/badge/django%20CMS-3.7%2B-blue.svg
+.. |djangocms| image:: https://img.shields.io/badge/django%20CMS-3.9%2B-blue.svg
+    :target: https://www.django-cms.org/
+.. |djangocms4| image:: https://img.shields.io/badge/django%20CMS-4-blue.svg
     :target: https://www.django-cms.org/
