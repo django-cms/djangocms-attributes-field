@@ -3,7 +3,8 @@ from django.db.models.fields import NOT_PROVIDED
 from django.test.testcases import TestCase
 
 from djangocms_attributes_field.fields import (
-    AttributesField, AttributesFormField,
+    AttributesField,
+    AttributesFormField,
 )
 
 

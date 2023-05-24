@@ -1,6 +1,5 @@
-from django.db import models
-
 from cms.models import CMSPlugin
+from django.db import models
 
 from djangocms_attributes_field.fields import AttributesField
 
