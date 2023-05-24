@@ -11,7 +11,6 @@ from django.utils.translation import gettext_lazy as _
 
 from .widgets import AttributesWidget
 
-
 regex_key_validator = RegexValidator(regex=r'^[a-z][-a-z0-9_:]*\Z',
                                      flags=re.IGNORECASE, code='invalid')
 
