@@ -7,6 +7,7 @@ Changelog
 
 * Added tests for Django 4.0, 4.1, 4.2
 * Added tests for Python 3.10, 3.11
+* Remove pinning of django-treebeard
 
 2.1.0 (2022-03-27)
 ==================
