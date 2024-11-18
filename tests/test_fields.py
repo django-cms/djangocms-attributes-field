@@ -15,7 +15,7 @@ class Noop:
 class KeyValidationTests(TestCase):
 
     def test_validate_key(self):
-        field = AttributesField()
+        field = AttributesFormField()
         # Normal, expected patterns
         try:
             field.validate_key('target')
@@ -48,20 +48,34 @@ class KeyValidationTests(TestCase):
 
     def test_excluded_keys(self):
         # First prove that the keys we're about to test would normally pass
-        field = AttributesField()
+        field = AttributesFormField()
         try:
-            field.validate_key('href')
-            field.validate_key('src')
+
+            field.validate_key('title')
+            field.validate_key('data-test')
         except ValidationError:
             self.fail('Keys that pass have failed.')
 
         # Now show that they no longer pass if explicitly exclude
-        field = AttributesField(excluded_keys=['href', 'src', ])
+        field = AttributesFormField(excluded_keys=['title', 'data-test', ])
 
         with self.assertRaises(ValidationError):
-            field.validate_key('href')
+            field.validate_key('title')
         with self.assertRaises(ValidationError):
             field.validate_key('src')
+
+    def test_default_excluded_keys(self):
+        from djangocms_attributes_field.fields import default_excluded_keys
+
+        field = AttributesFormField()
+        for key in default_excluded_keys:
+            with self.subTest(key=key):
+                with self.assertRaises(ValidationError):
+                    field.validate_key(key)
+
+        with self.subTest(key="onsomething"):
+            with self.assertRaises(ValidationError):
+                field.validate_key(key)
 
 
 class AttributesFieldsTestCase(TestCase):
