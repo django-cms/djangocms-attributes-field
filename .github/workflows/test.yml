@@ -8,17 +8,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ 3.9, "3.10", "3.11"]  # latest release minus two
+        python-version: [ "3.9", "3.10", "3.11", "3.12"]  # latest release minus two
         requirements-file: [
-          dj32_cms311.txt,
-          dj40_cms311.txt,
-          dj41_cms311.txt,
           dj42_cms311.txt,
-          dj42_cms41.txt
+          dj42_cms41.txt,
+          dj50_cms41.txt,
+          dj51_cms41.txt
         ]
         os: [
           ubuntu-20.04,
         ]
+        exclude:
+            - python-version: "3.9"
+              requirements-file: dj50_cms41.txt
+            - python-version: "3.9"
+              requirements-file: dj51_cms41.txt
 
     steps:
     - uses: actions/checkout@v1
@@ -34,7 +38,7 @@ jobs:
         python setup.py install
 
     - name: Run coverage
-      run: coverage run setup.py test
+      run: coverage run tests/settings.py
 
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v1
