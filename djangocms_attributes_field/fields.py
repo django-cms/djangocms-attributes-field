@@ -126,19 +126,7 @@ class AttributesField(models.Field):
         defaults["excluded_keys"] = self.excluded_keys
         return super().formfield(**defaults)
 
-    # This was added to keep backwards compatibility with Django 2.2 while also
-    # avoiding a RemovedInDjango30Warning caused by the deprecation of
-    # context argument
-    if DJANGO_2_2:
-        def from_db_value(self, value,
-                          expression=None, connection=None, context=None):
-            self._from_db_value(value)
-    else:
-        def from_db_value(self, value,
-                          expression=None, connection=None):
-            self._from_db_value(value)
-
-    def _from_db_value(self, value):
+    def from_db_value(self, value, expression=None, connection=None):
         """
         This is a temporary workaround for #7 taken from
         https://bitbucket.org/schinckel/django-jsonfield/pull-requests/32/make-from_db_value-compatible-with/diff
