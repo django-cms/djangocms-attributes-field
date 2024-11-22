@@ -126,7 +126,7 @@ class AttributesField(models.Field):
         defaults["excluded_keys"] = self.excluded_keys
         return super().formfield(**defaults)
 
-    def from_db_value(self, value, expression=None, connection=None, context=None):
+    def from_db_value(self, value, expression=None, connection=None):
         """
         This is a temporary workaround for #7 taken from
         https://bitbucket.org/schinckel/django-jsonfield/pull-requests/32/make-from_db_value-compatible-with/diff
