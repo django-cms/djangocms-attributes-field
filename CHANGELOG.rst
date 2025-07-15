@@ -2,11 +2,22 @@
 Changelog
 =========
 
+4.0.0 (2024-11-19)
+==================
+
+* Moved validation to from AttributeField to AttributeFormField
+* Added djangocms_attributes_fields.fields.default_excluded_keys to include
+  keys that can execute javascript
+* Added tests for Django 5.0, 5.1
+* Dropped support for Django 3.2, 4.0, 4.1
+* Dropped support for Python 3.6, 3.7, 3.8
+
 3.0.0 (2023-05-24)
 ==================
 
 * Added tests for Django 4.0, 4.1, 4.2
 * Added tests for Python 3.10, 3.11
+* Remove pinning of django-treebeard
 
 2.1.0 (2022-03-27)
 ==================

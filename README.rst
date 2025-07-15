@@ -92,6 +92,13 @@ There is an optional parameter that can be used when declaring the field: ::
     ``excluded_keys`` : This is a list of strings that will not be accepted as
                         valid keys
 
+Since version 4, the following keys are always excluded (see
+``djangocms_attributes_fields.fields.default_excluded_keys``) to avoid
+unwanted execution of javascript: ::
+
+    ["src", "href", "data", "action", "on*"]
+
+``'on*'`` represents any key that starts with ``'on'``.
 
 property: [field_name]_str
 ++++++++++++++++++++++++++
@@ -161,7 +168,7 @@ You can run tests by executing::
     virtualenv env
     source env/bin/activate
     pip install -r tests/requirements.txt
-    python setup.py test
+    python tests/settings.py
 
 
 .. |pypi| image:: https://badge.fury.io/py/djangocms-attributes-field.svg
