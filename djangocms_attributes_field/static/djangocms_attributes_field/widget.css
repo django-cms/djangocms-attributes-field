@@ -1,0 +1,40 @@
+body.djangocms-admin-style .delete-attributes-pair,
+body.djangocms-admin-style .add-attributes-pair {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 6px 5px 8px 10px;
+    line-height: inherit;
+}
+.delete-attributes-pair, .add-attributes-pair {
+    line-height: 2;
+}
+.attributes-pair {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+.attributes-pair .field-box:first-child {
+    width: 25% !important;
+    display: table-cell !important;
+    vertical-align: top !important;
+    float: none !important;
+}
+.attributes-pair .field-box:last-child {
+    display: table-cell !important;
+    vertical-align: top !important;
+    width: 75% !important;
+    float: none !important;
+}
+body:not(.djangocms-admin-style) .attributes-pair .field-box:first-child input {
+    width: calc(100% - 1.3em);
+}
+.djangocms-attributes-field .attributes-pair .attributes-value {
+    width: 60% !important;
+    width: -webkit-calc(100% - 54px) !important;
+    width: -moz-calc(100% - 54px) !important;
+    width: calc(100% - 54px) !important;
+}
+.delete-attributes-pair {
+    margin-left: 16px;
+}

@@ -1,7 +1,31 @@
+from django.apps import apps
 from django.forms import Widget
 from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags
 from django.utils.translation import gettext as _
+
+
+# NOTE: Inlining the CSS and JS code allows avoiding to register
+# djangocms_attributes_field in INSTALLED_APPS. It will, however,
+# potentially conflict with a CSP.
+# If "djangocms_attributes_field" is installed, then the media class
+# of the widget is used, otherwise the CSS and JS is inlined by reading from
+# file system at startup. This way, we support CSPs that do not allow
+# inline scripts/styles, but also support projects that historically do not use
+# djangocms_attributes_field as an app, but still want to use the widget.
+
+if apps.is_installed('djangocms_attributes_field'):
+    _inline_code = ""
+else:
+    def _read_static_files():
+        with open('./static/djangocms_attributes_field/widget.js', 'r', encoding='utf-8') as f:
+            js_code = f.read()
+        with open('./static/djangocms_attributes_field/widget.css', 'r', encoding='utf-8') as f:
+            css_code = f.read()
+        return css_code, js_code
+
+    _inline_code = "<style>{}</style><script>{}</script>".format(*_read_static_files())
+
 
 
 class AttributesWidget(Widget):
@@ -86,103 +110,7 @@ class AttributesWidget(Widget):
         """.format(
             title=_('Add another key/value pair'),
         )
-        output += '</div>'
-
-        # NOTE: This is very consciously being inlined into the HTML because
-        # if we use the Django "class Media()" mechanism to include this JS
-        # behaviour, then every project that uses any package that uses Django
-        # CMS Attributes Field will also have to add this package to its
-        # INSTALLED_APPS. By inlining the JS and CSS here, we avoid this.
-        output += """
-        <style>
-            body.djangocms-admin-style .delete-attributes-pair,
-            body.djangocms-admin-style .add-attributes-pair {
-                border: 1px solid #ddd;
-                border-radius: 3px;
-                display: inline-block;
-                padding: 6px 5px 8px 10px;
-                line-height: inherit;
-            }
-            .delete-attributes-pair, .add-attributes-pair {
-                line-height: 2;
-            }
-            .attributes-pair {
-                display: table;
-                table-layout: fixed;
-                width: 100%;
-            }
-            .attributes-pair .field-box:first-child {
-                width: 25% !important;
-                display: table-cell !important;
-                vertical-align: top !important;
-                float: none !important;
-            }
-            .attributes-pair .field-box:last-child {
-                display: table-cell !important;
-                vertical-align: top !important;
-                width: 75% !important;
-                float: none !important;
-            }
-            body:not(.djangocms-admin-style) .attributes-pair .field-box:first-child input {
-                width: calc(100% - 1.3em);
-            }
-            .djangocms-attributes-field .attributes-pair .attributes-value {
-                width: 60% !important;
-                width: -webkit-calc(100% - 54px) !important;
-                width: -moz-calc(100% - 54px) !important;
-                width: calc(100% - 54px) !important;
-            }
-            .delete-attributes-pair {
-                margin-left: 16px;
-            }
-        </style>
-        <script>
-            (function ($) {
-                function fixUpIds (fieldGroup) {
-                    fieldGroup.find('.attributes-pair').each(function (idx, value) {
-                        $(value).find('.attributes-key').attr('id', 'field-key-row-' + idx)
-                                .siblings('label').attr('for', 'field-key-row-' + idx);
-                        $(value).find('.attributes-value').attr('id', 'field-value-row-' + idx)
-                                .siblings('label').attr('for', 'field-value-row-' + idx);
-                    });
-                }
-
-                $(function () {
-                    $('.djangocms-attributes-field').each(function () {
-                        var that = $(this);
-
-                        if (that.data('isAttributesFieldInitialized')) {
-                            return;
-                        }
-
-                        that.data('isAttributesFieldInitialized', true);
-
-                        var emptyRow = that.find('.template');
-                        var btnAdd = that.find('.add-attributes-pair');
-                        var btnDelete = that.find('.delete-attributes-pair');
-
-                        btnAdd.on('click', function (event) {
-                            event.preventDefault();
-                            emptyRow.before(emptyRow.find('.attributes-pair').clone());
-                            fixUpIds(that);
-                        });
-
-                        that.on('click', '.delete-attributes-pair', function (event) {
-                            event.preventDefault();
-
-                            var removeButton = $(this);
-
-                            removeButton.closest('.attributes-pair').remove();
-                            fixUpIds(that);
-                        });
-
-                        fixUpIds(that);
-                    });
-
-                });
-            }(django.jQuery));
-        </script>
-        """
+        output += '</div>' + _inline_code
         return mark_safe(output)
 
     def value_from_datadict(self, data, files, name):
