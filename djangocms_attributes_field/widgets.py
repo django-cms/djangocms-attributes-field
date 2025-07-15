@@ -110,7 +110,7 @@ class AttributesWidget(Widget):
         """.format(
             title=_('Add another key/value pair'),
         )
-        output += '</div>' + _inline_code
+        output += f'</div>{_inline_code}'
         return mark_safe(output)
 
     def value_from_datadict(self, data, files, name):
