@@ -6,7 +6,6 @@ from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags
 from django.utils.translation import gettext as _
 
-
 # NOTE: Inlining the CSS and JS code allows avoiding to register
 # djangocms_attributes_field in INSTALLED_APPS. It will, however,
 # potentially conflict with a CSP.
