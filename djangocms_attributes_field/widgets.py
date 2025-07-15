@@ -29,7 +29,6 @@ def _read_inline_code():
             return css_code, js_code
 
         _inline_code = "<style>{}</style><script>{}</script>".format(*_read_static_files())
-        print(_inline_code)
     return _inline_code
 
 
@@ -61,7 +60,7 @@ class AttributesWidget(Widget):
 
         if _inline_code is None:
             _inline_code = _read_inline_code()
-        print("Inline code:", _inline_code)
+
         if _inline_code:
             return Media()
         else:
