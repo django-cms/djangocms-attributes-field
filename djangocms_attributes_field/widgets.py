@@ -1,5 +1,7 @@
+import os
+
 from django.apps import apps
-from django.forms import Widget
+from django.forms import Media, Widget
 from django.forms.utils import flatatt
 from django.utils.html import escape, mark_safe, strip_spaces_between_tags
 from django.utils.translation import gettext as _
@@ -13,19 +15,23 @@ from django.utils.translation import gettext as _
 # file system at startup. This way, we support CSPs that do not allow
 # inline scripts/styles, but also support projects that historically do not use
 # djangocms_attributes_field as an app, but still want to use the widget.
+_inline_code = None
 
-if apps.is_installed('djangocms_attributes_field'):
-    _inline_code = ""
-else:
-    def _read_static_files():
-        with open('./static/djangocms_attributes_field/widget.js', 'r', encoding='utf-8') as f:
-            js_code = f.read()
-        with open('./static/djangocms_attributes_field/widget.css', 'r', encoding='utf-8') as f:
-            css_code = f.read()
-        return css_code, js_code
+def _read_inline_code():
+    if apps.is_installed('djangocms_attributes_field'):
+        _inline_code = ""
+    else:
+        def _read_static_files():
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            with open(os.path.join(base_dir, 'static/djangocms_attributes_field/widget.js'), 'r', encoding='utf-8') as f:
+                js_code = f.read()
+            with open(os.path.join(base_dir, 'static/djangocms_attributes_field/widget.css'), 'r', encoding='utf-8') as f:
+                css_code = f.read()
+            return css_code, js_code
 
-    _inline_code = "<style>{}</style><script>{}</script>".format(*_read_static_files())
-
+        _inline_code = "<style>{}</style><script>{}</script>".format(*_read_static_files())
+        print(_inline_code)
+    return _inline_code
 
 
 class AttributesWidget(Widget):
@@ -43,6 +49,31 @@ class AttributesWidget(Widget):
         self.val_attrs = kwargs.pop('val_attrs', {})
         self.sorted = sorted if kwargs.pop('sorted', True) else lambda x: x
         super().__init__(*args, **kwargs)
+
+    @property
+    def media(self):
+        """
+        Returns the media required by this widget.
+        If djangocms_attributes_field is installed, it will use the media class
+        of the widget, otherwise it will inline the CSS and JS.
+        """
+
+        global _inline_code
+
+        if _inline_code is None:
+            _inline_code = _read_inline_code()
+        print("Inline code:", _inline_code)
+        if _inline_code:
+            return Media()
+        else:
+            return Media(
+                css={
+                    'all': ('djangocms_attributes_field/widget.css',)
+                },
+                js=(
+                    'djangocms_attributes_field/widget.js',
+                )
+            )
 
     def _render_row(self, key, value, field_name, key_attrs, val_attrs):
         """
