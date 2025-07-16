@@ -2,7 +2,7 @@
 django CMS Attributes Field
 ===========================
 
-|pypi| |coverage|  |python| |django| |djangocms| |djangocms4|
+|pypi| |coverage|  |python| |django| |djangocms|
 
 
 This project is an opinionated implementation of JSONField for arbitrary HTML
@@ -25,7 +25,8 @@ and provide sensible validation of the keys used.
 
 .. note::
 
-    This project is considered 3rd party (no supervision by the `django CMS Association <https://www.django-cms.org/en/about-us/>`_). Join us on `Slack                 <https://www.django-cms.org/slack/>`_ for more information.
+    This project is considered 3rd party (no supervision by the `django CMS Association <https://www.django-cms.org/en/about-us/>`_).
+    Join us on `Discord <https://www.django-cms.org/discord/>`_ for more information.
 
 
 .. image:: preview.gif
@@ -63,7 +64,7 @@ Installation
 For a manual install:
 
 * run ``pip install djangocms-attributes-field``
-* add ``djangocms_attributes_field`` to your ``INSTALLED_APPS``
+* add ``djangocms_attributes_field`` to your ``INSTALLED_APPS`` (at least for CSP support)
 * run ``python manage.py migrate djangocms_attributes_field``
 
 
@@ -174,11 +175,13 @@ You can run tests by executing::
     :target: http://badge.fury.io/py/djangocms-attributes-field
 .. |coverage| image:: https://codecov.io/gh/django-cms/djangocms-attributes-field/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/divio/djangocms-attributes-field
-.. |python| image:: https://img.shields.io/badge/python-3.8+-blue.svg
+
+.. |python| image:: https://img.shields.io/pypi/pyversions/djangocms-attributes-field
+    :alt: PyPI - Python Version
     :target: https://pypi.org/project/djangocms-attributes-field/
-.. |django| image:: https://img.shields.io/badge/django-3.2,%204.0--%204.2-blue.svg
+.. |django| image:: https://img.shields.io/pypi/frameworkversions/django/djangocms-attributes-field
+    :alt: PyPI - Django Versions from Framework Classifiers
     :target: https://www.djangoproject.com/
-.. |djangocms| image:: https://img.shields.io/badge/django%20CMS-3.9%2B-blue.svg
-    :target: https://www.django-cms.org/
-.. |djangocms4| image:: https://img.shields.io/badge/django%20CMS-4-blue.svg
+.. |djangocms| image:: https://img.shields.io/pypi/frameworkversions/django-cms/djangocms-attributes-field
+    :alt: PyPI - django CMS Versions from Framework Classifiers
     :target: https://www.django-cms.org/

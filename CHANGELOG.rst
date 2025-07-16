@@ -2,6 +2,11 @@
 Changelog
 =========
 
+4.1.0 (2025-07-15)
+==================
+
+* Add CSP support (load JS and CSS from static files if installed in INSTALLED_APPS)
+
 4.0.0 (2024-11-19)
 ==================
 
