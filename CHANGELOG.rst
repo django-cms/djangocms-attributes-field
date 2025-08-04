@@ -6,6 +6,7 @@ Changelog
 ==================
 
 * Add CSP support (load JS and CSS from static files if installed in INSTALLED_APPS)
+* fix: Remove test files from wheel
 
 4.0.0 (2024-11-19)
 ==================
