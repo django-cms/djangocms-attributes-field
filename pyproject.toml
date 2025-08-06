@@ -1,6 +1,6 @@
 [project]
 name = "djangocms-attributes-field"
-version = "4.1.0"
+dynamic = ["version"]
 description = "Adds attributes to Django models."
 authors = [
     {name = "Divio AG", email = "info@divio.ch"},
@@ -49,6 +49,10 @@ Repository = "https://github.com/django-cms/djangocms-attributes-field/"
 [build-system]
 requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = { attr = "djangocms_attributes_field.__version__" }
+
 [tool.setuptools.packages.find]
 include = ["djangocms_attributes_field*"]
 
