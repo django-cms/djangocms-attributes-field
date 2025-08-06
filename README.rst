@@ -174,7 +174,7 @@ You can run tests by executing::
 .. |pypi| image:: https://badge.fury.io/py/djangocms-attributes-field.svg
     :target: http://badge.fury.io/py/djangocms-attributes-field
 .. |coverage| image:: https://codecov.io/gh/django-cms/djangocms-attributes-field/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/divio/djangocms-attributes-field
+    :target: https://codecov.io/gh/django-cms/djangocms-attributes-field
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/djangocms-attributes-field
     :alt: PyPI - Python Version

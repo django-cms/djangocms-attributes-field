@@ -2,6 +2,11 @@
 Changelog
 =========
 
+4.1.1 (2025-08-06)
+==================
+
+* fix: Remove reference to sunset LooseVersion of distutils
+
 4.1.0 (2025-07-15)
 ==================
 
