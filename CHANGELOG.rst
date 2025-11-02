@@ -2,6 +2,11 @@
 Changelog
 =========
 
+4.1.2 (2025-11.02)
+==================
+
+* fix: Add min-height to add link for unstyled Django admin
+
 4.1.1 (2025-08-06)
 ==================
 

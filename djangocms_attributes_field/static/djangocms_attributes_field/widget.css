@@ -8,6 +8,7 @@ body.djangocms-admin-style .add-attributes-pair {
 }
 .delete-attributes-pair, .add-attributes-pair {
     line-height: 2;
+    min-height: 16px;
 }
 .attributes-pair {
     display: table;
